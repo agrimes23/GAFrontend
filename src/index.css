@@ -11,3 +11,20 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.card {
+  width: 350px;
+}
+
+.clothing-color {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px black solid;
+  background-color: blueviolet;
+}
+
+.clothing-img {
+  height: 400px;
+  object-fit: cover;
+}

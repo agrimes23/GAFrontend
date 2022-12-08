@@ -3,16 +3,18 @@ import { useState, useEffect } from 'react'
 import './App.css'
 import Login from './components/Login.js'
 import Quiz from './components/Quiz.js'
-import Clothes from './components/Clothes.js'
+import Dashboard from './components/Dashboard.js'
+import Signup from './components/Signup.js'
 
 const App = () => {
   return (
     <>
       <h1>Clothing Site</h1>
       {/* will move these components to the right place later. Just putting it here for now */}
-      <Login />
-      <Quiz />
-      <Clothes />
+      {/* <Login /> */}
+      {/* <Quiz /> */}
+      {/* <Signup/> */}
+      <Dashboard />
 
     </>
   )
