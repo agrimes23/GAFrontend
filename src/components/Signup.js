@@ -1,9 +1,11 @@
 import {useState} from 'react'
+import Navbar from './Navbar.js'
 
 const Signup = () => {
 
     return (
         <>
+        
             <div className="signup-page">
                 <div className="container-fluid signup-box form-group align-items-center d-flexcolumn shadow">
                     <div className="mt-5 mx-5">

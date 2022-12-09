@@ -7,6 +7,8 @@ import Dashboard from './components/Dashboard.js'
 import Signup from './components/Signup.js'
 import Navbar from './components/Navbar.js'
 
+import { Route, Routes, Link } from 'react-router-dom'
+
 const App = () => {
 
   const [userInfo, setUserInfo] = useState( [] )
@@ -23,15 +25,13 @@ const App = () => {
 
   return (
     <>
-      <Navbar/>
-      {/* will move these components to the right place later. Just putting it here for now */}
-      {/* <Login /> */}
-      {/* <Quiz /> */}
-      {/* <Signup/> */}
-      {/* <Dashboard /> */}
-      <Login />
-      
-
+    <Navbar/>
+      <Routes>    
+        <Route exact path="/" element={<Signup/>} />
+        <Route path="/login" element={<Login />}/>
+        <Route path="/dashboard" element={<Dashboard />}/>
+        <Route path="/quiz" element={<Quiz />}/>      
+      </Routes>
     </>
   )
 }
