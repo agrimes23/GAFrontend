@@ -5,11 +5,22 @@ const Dashboard = () => {
 
     return (
         <>
-
-            <div className="container-fluid d-flex justify-content-center">
-                <Clothes />
+            <div className="container-fluid">
+                <div className="text-center my-5">
+                    <h1 className="my-5">Welcome, {}Alex!</h1>
+                    <h3>Outfits and styles curated just for you</h3>
+                </div>
+                <hr/>
+                <div class="input-group m-auto my-5 w-50">
+                    <input type="text" class="form-control" placeholder="Search a category" aria-label="Recipient's username" aria-describedby="basic-addon2"/>
+                        <div class="input-group-append">
+                            <button class="btn btn-dark" type="button">Search</button>
+                        </div>
+                </div>
+                <div className="container-fluid d-flex justify-content-center w-75 mt-5 card-page">
+                    <Clothes />
+                </div>
             </div>
-            
         </>
     )
 }

@@ -5,16 +5,18 @@ import Login from './components/Login.js'
 import Quiz from './components/Quiz.js'
 import Dashboard from './components/Dashboard.js'
 import Signup from './components/Signup.js'
+import Navbar from './components/Navbar.js'
 
 const App = () => {
   return (
     <>
-      <h1>Clothing Site</h1>
+      <Navbar/>
       {/* will move these components to the right place later. Just putting it here for now */}
       {/* <Login /> */}
       {/* <Quiz /> */}
-      {/* <Signup/> */}
-      <Dashboard />
+      <Signup/>
+      {/* <Dashboard /> */}
+
 
     </>
   )
