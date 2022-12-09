@@ -5,9 +5,75 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+}
+
+html, body, #root {
+  height: 100%;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+/******* NavBar Styling *******/
+
+nav { 
+  font-family: 'Sora', sans-serif;
+  font-weight: 600;
+}
+
+.fa-cart-shopping {
+  color: white;
+  font-size: 1.7em;
+}
+
+/******* Signup & Login Styling *******/
+
+.signup-page, .login-page {
+  height: 100%;
+  background-image: url("https://st2.depositphotos.com/1068875/7956/i/450/depositphotos_79565488-stock-photo-distant-mountain-range-and-thin.jpg");
+  background-size: cover;
+}
+
+.signup-box, .login-box {
+  text-align: center;
+  width: 800px;
+  height: 600px;
+  border-radius: 5%;
+  z-index: 2;
+  position: absolute;
+  top: 25%;
+  left: 33%;
+  margin-top: -50px;
+  margin-left: -50px;
+  background-color: rgb(224, 224, 224);
+
+}
+
+.shadow {
+  box-shadow: inset 0 0 50px #000000;
+}
+
+/******* Clothing Dashboard Styling *******/
+
+.card {
+  width: 350px;
+}
+
+.clothing-color {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px black solid;
+  background-color: blueviolet;
+}
+
+.clothing-img {
+  height: 400px;
+  object-fit: cover;
+}
+
+
