@@ -1,6 +1,6 @@
 import {useState} from 'react'
 
-const Login = () => {
+const Login = (props) => {
 
     return (
         <>

@@ -19,7 +19,7 @@ const Signup = () => {
                         <label htmlFor='password'>Password:</label>
                         <input className="form-control" type="text"></input>
 
-                        <input className="btn btn-info my-5" type="submit" value="Signup" />
+                        <input className="btn btn-info my-5" type="submit" value="Signup & take the quiz!" />
                     </form>           
                 </div> 
                 <div className="already have an account? Log in here"></div>              

@@ -10,6 +10,9 @@ const Navbar = () => {
                     <i className="fa-solid fa-shirt mx-2 my-3"></i>
                     StyleFinder
                 </a>
+                <ul className="nav navbar-nav navbar-right">
+                    <li><i className="fa-solid fa-cart-shopping mx-5"></i></li>
+                </ul>
             </nav>
         </>
     )

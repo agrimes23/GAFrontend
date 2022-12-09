@@ -17,10 +17,20 @@ code {
     monospace;
 }
 
+
+/******* NavBar Styling *******/
+
 nav { 
   font-family: 'Sora', sans-serif;
   font-weight: 600;
 }
+
+.fa-cart-shopping {
+  color: white;
+  font-size: 1.7em;
+}
+
+/******* Signup & Login Styling *******/
 
 .signup-page, .login-page {
   height: 100%;
@@ -43,6 +53,12 @@ nav {
 
 }
 
+.shadow {
+  box-shadow: inset 0 0 50px #000000;
+}
+
+/******* Clothing Dashboard Styling *******/
+
 .card {
   width: 350px;
 }
@@ -60,6 +76,4 @@ nav {
   object-fit: cover;
 }
 
-.shadow {
-  box-shadow: inset 0 0 50px #000000;
-}
+
