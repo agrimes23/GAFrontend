@@ -14,9 +14,9 @@ const App = () => {
       {/* will move these components to the right place later. Just putting it here for now */}
       {/* <Login /> */}
       {/* <Quiz /> */}
-      <Signup/>
+      {/* <Signup/> */}
       {/* <Dashboard /> */}
-
+      <Login />
 
     </>
   )

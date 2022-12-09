@@ -5,7 +5,7 @@ const Signup = () => {
     return (
         <>
             <div className="signup-page">
-                <div className="container-fluid signup-box form-group align-items-center d-flexcolumn">
+                <div className="container-fluid signup-box form-group align-items-center d-flexcolumn shadow">
                     <div className="mt-5 mx-5">
                         <h1>Sign Up for personalized clothing options today!</h1>
                     </div>
@@ -19,11 +19,13 @@ const Signup = () => {
                         <label htmlFor='password'>Password:</label>
                         <input className="form-control" type="text"></input>
 
-                        <input className="btn btn-info my-5" type="submit" />
+                        <input className="btn btn-info my-5" type="submit" value="Signup" />
                     </form>           
                 </div> 
                 <div className="already have an account? Log in here"></div>              
             </div>
+
+
         </>
     )
 }
