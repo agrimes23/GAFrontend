@@ -30,6 +30,13 @@ nav {
   font-size: 1.7em;
 }
 
+.fa-shirt, .logo {
+  color: white;
+  text-decoration: none;
+  font-size: 1.3em;
+}
+
+
 /******* Signup & Login Styling *******/
 
 .signup-page, .login-page {
@@ -76,4 +83,40 @@ nav {
   object-fit: cover;
 }
 
+/******* Cart Styling *******/
 
+.cart-page {
+  width: 70%;
+}
+
+.cart-img {
+  height: 200px;
+  object-fit: scale-down;
+}
+
+.cart-card {
+  width: 800px
+}
+
+.processing:after {
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: bottom;
+  -webkit-animation: ellipsis steps(5, end) 900ms infinite;
+  animation: ellipsis steps(15, end) 900ms infinite;
+  content: "\2026";
+  /* ascii code for the ellipsis character */
+  width: 0px;
+}
+
+@keyframes ellipsis {
+  to {
+    width: 40px;
+  }
+}
+
+@-webkit-keyframes ellipsis {
+  to {
+    width: 40px;
+  }
+}
