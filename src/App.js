@@ -12,17 +12,18 @@ import { Route, Routes, Link } from 'react-router-dom'
 
 const App = () => {
 
-  const [userInfo, setUserInfo] = useState( [] )
+  const [userInfo, setUserInfo] = useState( {} )
 
-  const getUserInfo = () => {
-    axios.get('http://localhost:3000/')
-    .then((res) => setUserInfo(res.data), (err) => console.log(err))
-    .catch((error) => console.log(error))
-  }
+  // const getUserInfo = () => {
+  //   axios.get('http://localhost:3000/')
+  //   .then((res) => setUserInfo(res.data), (err) => console.log(err))
+  //   .catch((error) => console.log(error))
+  // }
 
   const handleCreateUser = (data) => {
     axios.post('http://localhost:3000/', data)
     .then((response) => {
+      console.log(response.data)
       setUserInfo(response.data)
     })
   }
@@ -53,9 +54,9 @@ const App = () => {
   //   })
   // }
 
-  useEffect (() => {
-    getUserInfo()
-  }, [])
+  // useEffect (() => {
+  //   getUserInfo()
+  // }, [])
 
   return (
     <>
