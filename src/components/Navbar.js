@@ -4,13 +4,6 @@ import { Routes, Link, Route, useLocation } from 'react-router-dom'
 const Navbar = () => {
 
     
-    // const showCartIcon = () => {
-        
-    //     let cartIcon = 
-    //     return cartIcon
-    // }
-
-    // console.log(window.location.pathname)
     return (
         <>  
             {/* If they're on the dashboard or in the cart, show cart icon in the right corner of the nav  */}
@@ -20,8 +13,8 @@ const Navbar = () => {
                     <i className="fa-solid fa-shirt mx-2 my-3"></i>
                     <h5 className="d-inline-block logo">StyleFinder</h5>
                 </Link>
-                {/* Need this to check the URL. if /dashboard or /cart, then show the cart icon.
-                If URL is / (signup), /login, or /quiz, then don't show the shopping cart */}
+                {/* FIXME: sometimes cart icon shows on homepage after on cart page. */}
+                {/* TODO: Also make dashboard icon to go to user dashboard if the user is logged in */}
                 <ul className="nav navbar-nav navbar-right">
                     {window.location.pathname === "/dashboard" || window.location.pathname === "/cart" ? (<li><Link to="/cart"><i className="fa-solid fa-cart-shopping mx-5"></i></Link></li>) : null}
                 </ul>
