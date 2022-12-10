@@ -18,11 +18,10 @@ const Navbar = () => {
             <nav className="navbar navbar-dark sticky-top bg-dark">
                 <Link to="/">
                     <i className="fa-solid fa-shirt mx-2 my-3"></i>
-                    StyleFinder
+                    <h5 className="d-inline-block logo">StyleFinder</h5>
                 </Link>
                 {/* Need this to check the URL. if /dashboard or /cart, then show the cart icon.
                 If URL is / (signup), /login, or /quiz, then don't show the shopping cart */}
-                (window.location === "/login") ? () : ()
                 <ul className="nav navbar-nav navbar-right">
                     {window.location.pathname === "/dashboard" || window.location.pathname === "/cart" ? (<li><Link to="/cart"><i className="fa-solid fa-cart-shopping mx-5"></i></Link></li>) : null}
                 </ul>

@@ -30,6 +30,13 @@ nav {
   font-size: 1.7em;
 }
 
+.fa-shirt, .logo {
+  color: white;
+  text-decoration: none;
+  font-size: 1.3em;
+}
+
+
 /******* Signup & Login Styling *******/
 
 .signup-page, .login-page {
@@ -76,4 +83,20 @@ nav {
   object-fit: cover;
 }
 
+/******* Cart Styling *******/
 
+.cart-page {
+  width: 70%;
+}
+
+.cart-img {
+  height: 400px;
+}
+
+.cart-card {
+  width: 800px
+}
+
+.total-card {
+  height: 800px;
+}

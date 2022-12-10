@@ -6,6 +6,7 @@ import Quiz from './components/Quiz.js'
 import Dashboard from './components/Dashboard.js'
 import Signup from './components/Signup.js'
 import Navbar from './components/Navbar.js'
+import Cart from './components/Cart.js'
 
 import { Route, Routes, Link } from 'react-router-dom'
 
@@ -30,7 +31,8 @@ const App = () => {
         <Route exact path="/" element={<Signup/>} />
         <Route path="/login" element={<Login />}/>
         <Route path="/dashboard" element={<Dashboard />}/>
-        <Route path="/quiz" element={<Quiz />}/>      
+        <Route path="/quiz" element={<Quiz />}/>
+        <Route path="/cart" element={<Cart />}/>         
       </Routes>
     </>
   )
