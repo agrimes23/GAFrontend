@@ -1,15 +1,26 @@
 import {useState} from 'react'
+import { Route, Routes, Link } from 'react-router-dom'
 
 
 const Cart = (props) => {
 
+    // FIXME: NEED TO CHANGE itemNum
+    const [itemNum, setItemNum]= useState({...props.user.cartItem})
     const [showProcessing, setShowProcessing] = useState(false)
+
+    const handleChange =(event)=>{
+        // FIXME: need to redo event.target.name/value, probably doesn't work. Need to test.
+        setItemNum({...itemNum, [event.target.name]:event.target.value});
+        props.handleEdit(props.user.cartItem);
+    }
 
     const afterTimeout = (event) => {
         // this will hide the processing tag and show the button again
-        // TODO: need to empty the cart array
+        // TODO: need to empty the cart array OR maybe empty it after showing cart list on purchased page?
         event.target.hidden = false
         setShowProcessing(false)
+        setTimeout(1000)
+        window.location.href="http://localhost:3000/purchased"
     }
 
     const checkOut = (event) => {
@@ -25,8 +36,9 @@ const Cart = (props) => {
             <div className="container-fluid d-flex cart-page justify-content-center">
                 
                 {/* List of items in cart */}
+                
                 <div className="flex-column flex-grow-1 d-inline-block">
-
+                    {/* FIXME: user.cart.map(cartItems) */}
                     {/* each item */}
                     <div className="flex-row card p-5 cart-card m-5">
                             <img src="https://img.ltwebstatic.com/images3_pi/2022/09/20/16636601306d90d32495f68b5a3c37e8c05c846f5d_thumbnail_900x.webp" className="cart-img float-left" />
@@ -35,7 +47,7 @@ const Cart = (props) => {
                             <h5 className="">{}price</h5>
                             <h5 className="">{}color</h5>
                             <div className="w-100">
-                                <select className='select-opt w-25 mt-3'>
+                                <select className='select-opt w-25 mt-3' onChange={handleChange}>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -47,7 +59,8 @@ const Cart = (props) => {
                                     <option value="9">9</option>
                                 </select>
                             </div>
-                            <input type="submit" className="btn btn-danger mt-4 mx-2 w-50" value="Delete"/>
+                            {/* TODO: Need to make a map and pass through cartItem or whatever in handleDelete */}
+                            <button className="btn btn-danger mt-4 mx-2 w-50" onClick={()=>{props.handleDelete()}} >Delete</button>
                         </div>
                     </div>
                     <div className="flex-row card p-5 cart-card m-5">
@@ -69,7 +82,7 @@ const Cart = (props) => {
                                     <option value="9">9</option>
                                 </select>
                             </div>
-                            <input type="submit" className="btn btn-danger mt-4 mx-2 w-50" value="Delete"/>
+                            <button className="btn btn-danger mt-4 mx-2 w-50" onClick={()=>{props.handleDelete()}} >Delete</button>
                             
                         </div>
                     </div>
