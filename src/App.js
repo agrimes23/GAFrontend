@@ -20,6 +20,39 @@ const App = () => {
     .catch((error) => console.log(error))
   }
 
+  // const handleCreate = (data) => {
+  //   axios.post('http://localhost:3000/user', data)
+  //   .then((response) => {
+  //     setUserInfo([...userInfo, response.data])
+  //   })
+  // }
+
+  // const handleEdit = (data) => {
+  //   axios.put('http://localhost:3000/cart/' + data._id, data)
+  //   .then((response) => {
+  //     // FIXME: userInfo.cart might be different...
+  //     let newItems = userInfo.cart.map((cartItem) => {
+  //       return cartItem._id !== data._id ? cartItem : data
+  //     })
+  //     // I don't need to add anything else here right..?
+  //     // TODO: need to double check backend to see what's happening on an update
+  //   })
+  // }
+
+  // const handleDelete = (deletedItem) => {
+  //   axios.delete('http://localhost:3000/cart/' + deletedItem._id)
+  //   .then((response) => {
+  //     // FIXME: need to double check the backend logic first and test this out
+  //     let newItems = userInfo.cart.filter((cartItem) => {
+  //       return cartItem._id !== cartItem._id
+  //     })
+
+  //     // this saves each item that is not the deleted Person's info to the array.
+  //     setUserInfo(newItems)
+
+  //   })
+  // }
+
   useEffect (() => {
     getUserInfo()
   }, [])
