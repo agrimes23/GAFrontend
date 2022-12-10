@@ -1,7 +1,21 @@
 import {useState} from 'react'
-import { Link, } from 'react-router-dom'
+import { Link, useNavigate} from 'react-router-dom'
 
-const Signup = () => {
+const Signup = (props) => {
+    const [user, setUser] = useState({email: '', name: '', password: ''})
+
+    // replaces the Link hook due to Link hook preventing submit of form.
+    const navigate = useNavigate()
+
+    const handleChange = (e) => {
+        setUser({...user, [e.target.name]: e.target.value})
+    }
+
+    const handleSubmit = (e) => {
+      e.preventDefault()
+      props.handleCreateUser(user)
+      navigate('/quiz')
+    }
 
     return (
         <>
@@ -11,17 +25,17 @@ const Signup = () => {
                     <div className="mt-5 mx-5">
                         <h1>Sign Up for personalized clothing options today!</h1>
                     </div>
-                    <form className="d-block row p-5 w-75 m-auto">
+                    <form onSubmit={handleSubmit} className="d-block row p-5 w-75 m-auto">
                         <label htmlFor='name'>Name:</label>
-                        <input className="form-control" type="text" required></input>
+                        <input className="form-control" type="text" name="name" required onChange={handleChange}></input>
 
                         <label htmlFor='email'>Email</label>
-                        <input className="form-control" type="email" required></input>
+                        <input className="form-control" type="email" name="email" required onChange={handleChange}></input>
 
                         <label htmlFor='password'>Password:</label>
-                        <input className="form-control" type="password" required></input>
+                        <input className="form-control" type="password" name="password" required onChange={handleChange}></input>
 
-                        <Link to="/quiz"><input className="btn btn-info my-5" type="submit" value="Signup & take the quiz!" /></Link>
+                        <input className="btn btn-info my-5" type="submit" value="Signup & take the quiz!"/>
                     </form>           
                 </div> 
                 <div className="already have an account? Log in here"></div>

@@ -20,12 +20,12 @@ const App = () => {
     .catch((error) => console.log(error))
   }
 
-  // const handleCreate = (data) => {
-  //   axios.post('http://localhost:3000/user', data)
-  //   .then((response) => {
-  //     setUserInfo([...userInfo, response.data])
-  //   })
-  // }
+  const handleCreateUser = (data) => {
+    axios.post('http://localhost:3000/', data)
+    .then((response) => {
+      setUserInfo(response.data)
+    })
+  }
 
   // const handleEdit = (data) => {
   //   axios.put('http://localhost:3000/cart/' + data._id, data)
@@ -61,7 +61,7 @@ const App = () => {
     <>
     <Navbar/>
       <Routes>    
-        <Route exact path="/" element={<Signup/>} />
+        <Route exact path="/" element={<Signup handleCreateUser={handleCreateUser}/>} />
         <Route path="/login" element={<Login />}/>
         <Route path="/dashboard" element={<Dashboard />}/>
         <Route path="/quiz" element={<Quiz />}/>
