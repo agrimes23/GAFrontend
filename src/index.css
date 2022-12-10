@@ -90,13 +90,12 @@ nav {
 }
 
 .cart-img {
-  height: 400px;
+  height: 200px;
+  object-fit: scale-down;
 }
 
 .cart-card {
   width: 800px
 }
 
-.total-card {
-  height: 800px;
-}
+
