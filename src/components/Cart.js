@@ -8,6 +8,8 @@ const Cart = (props) => {
     // const [itemNum, setItemNum]= useState({...props.user.cartItem})
     const [showProcessing, setShowProcessing] = useState(false)
     const [itemNum, setItemNum] = useState(1)
+    const [priceTotal, setPriceTotal] = useState(0)
+    const [totalTax, setTotalTax] = useState(0)
 
     // const handleChange =(event)=>{
     //     // FIXME: need to redo event.target.name/value, probably doesn't work. Need to test.
@@ -21,7 +23,7 @@ const Cart = (props) => {
         event.target.hidden = false
         setShowProcessing(false)
         setTimeout(1000)
-        window.location.href="http://localhost:3000/purchased"
+        window.location.href="http://localhost:3001/purchased"
     }
 
     const checkOut = (event) => {
@@ -35,6 +37,22 @@ const Cart = (props) => {
         (event.target.value === "+") ? setItemNum(itemNum + 1) : setItemNum(itemNum - 1)
     }
 
+    // const calculateTotal = () => {
+    //     props.user[0].cart.map((cartItem)=> { 
+    //         return (
+    //             <>
+    //                 setPriceTotal(priceTotal + parseInt(cartItem.price))
+    //             </>
+    //         )
+    //     })
+    // }
+
+    // const calculateTax = () => {
+    //     setTotalTax(((priceTotal + 12) * 0.625).toFixed(2))
+    // }
+
+
+
     return (
         <>
         <h1 className="mx-auto text-center mt-5">Your cart</h1>
@@ -43,15 +61,15 @@ const Cart = (props) => {
                 {/* List of items in cart */}
                 
                 <div className="flex-column flex-grow-1 d-inline-block">
-                    {props.user[0].cart.map((cartItem)=> { 
+                    {/* {props.user[0].cart.map((cartItem)=> {  */}
                     {/* each item */}
-                    return (
-                     <>
+                     {/* return (
+                      <> */}
                         <div className="flex-row card p-5 cart-card m-5">
                                 {/* <img src={cartItem.image} className="cart-img float-left" /> */}
                                 <img src="https://img.ltwebstatic.com/images3_pi/2022/09/20/16636601306d90d32495f68b5a3c37e8c05c846f5d_thumbnail_900x.webp" className="cart-img float-left"></img>
                             <div className="row d-flex cart-info my-auto m-4">
-                                <h4 className=""><strong>{cartItem.name}</strong></h4>
+                                {/* <h4 className=""><strong>{cartItem.name}</strong></h4> */}
                                 {/* <h5 className="">Price: ${cartItem.price}</h5>
                                 <h5 className="">Color: {cartItem.articleColorNames}</h5> */}
                                 <div className="d-flex">
@@ -63,9 +81,9 @@ const Cart = (props) => {
                                 <button className="btn btn-danger mt-4 mx-2 w-50" onClick={()=>{props.handleDelete()}} >Delete</button>
                             </div>
                         </div>
-                    </>
+                    {/* </>
                     )
-                    })}
+                    })} */}
                     {/* <div className="flex-row card p-5 cart-card m-5">
                             <img src="https://img.ltwebstatic.com/images3_pi/2022/09/20/16636601306d90d32495f68b5a3c37e8c05c846f5d_thumbnail_900x.webp" className="cart-img float-left" />
                         <div className="row d-flex cart-info my-auto m-4">
@@ -85,22 +103,24 @@ const Cart = (props) => {
                 </div>
 
                 {/* Total and checkout */}
+                {/* {calculateTotal()}
+                {calculateTax()} */}
                 <div className="flex-column flex-grow-1 d-flex total-card m-5">
                     <div className="card p-5">
                         <h3 className="my-5">Order Summary</h3>
-                        <h5 className="my-3">Total Items:</h5>
-                        <h5 className="my-3">Shipping & handling: </h5>
-                        <h5 className="my-3">Subtotal: </h5>
-                        <h5 className="my-3">Estimated Tax: total * 0.625</h5>
-                        <h3 className="my-5">Order Total: </h3>
+                        {/* <h6 className="my-3">Total Items: ${priceTotal}</h6>
+                        <h6 className="my-3">Shipping & handling: $12.00</h6>
+                        <h6 className="my-3">Subtotal: {priceTotal + 12}</h6>
+                        <h6 className="my-3">Estimated Tax: ${totalTax}</h6>
+                        <h6 className="my-5">Order Total: {priceTotal + 12 + totalTax}</h6> */}
                         <input type="submit" onClick={checkOut} className="btn btn-info my-3" value="checkout"/>
                         
                         {showProcessing ? <h5 className="processing mx-5 my-4">processing</h5> : null}
                     </div>
 
                 </div>
-             
             </div>
+            
         </>
     )
 }
