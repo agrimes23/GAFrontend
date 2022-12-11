@@ -28,17 +28,28 @@ const App = () => {
     })
   }
 
-  // const handleEdit = (data) => {
-  //   axios.put('http://localhost:3000/cart/' + data._id, data)
-  //   .then((response) => {
-  //     // FIXME: userInfo.cart might be different...
-  //     let newItems = userInfo.cart.map((cartItem) => {
-  //       return cartItem._id !== data._id ? cartItem : data
-  //     })
-  //     // I don't need to add anything else here right..?
-  //     // TODO: need to double check backend to see what's happening on an update
-  //   })
-  // }
+  const handleEditUser = (data) => {
+    axios.put('http://localhost:3000/quiz/' + userInfo._id, data)
+    .then(response => {
+      console.log(response.data)
+      setUserInfo(response.data)
+    })
+  }
+
+
+
+
+  const handleEdit = (data) => {
+    axios.put('http://localhost:3000/cart/' + data._id, data)
+    .then((response) => {
+      // FIXME: userInfo.cart might be different...
+      let newItems = userInfo.cart.map((cartItem) => {
+        return cartItem._id !== data._id ? cartItem : data
+      })
+      // I don't need to add anything else here right..?
+      // TODO: need to double check backend to see what's happening on an update
+    })
+  }
 
   const handleDelete = (deletedItem) => {
     axios.delete('http://localhost:3000/cart/' + deletedItem._id)
@@ -60,13 +71,13 @@ const App = () => {
 
   return (
     <>
-    {/* Don't need to put these through map right? */}
+    {/* Don't need to put these through map right? No, the dashboard component will have a clothes component which will be put thru a map.*/}
     <Navbar/>
       <Routes>    
         <Route exact path="/" element={<Signup handleCreateUser={handleCreateUser}/>} />
         <Route path="/login" element={<Login />}/>
         <Route path="/dashboard" element={<Dashboard />}/>
-        <Route path="/quiz" element={<Quiz />}/>
+        <Route path="/quiz" element={<Quiz handleEditUser={handleEditUser}/>}/>
         {/* TODO: check to see if it works */}
         <Route path="/cart" element={<Cart user={userInfo} handleDelete={handleDelete} handleEdit={handleEdit} />}/>
         <Route path="/purchased" element={<Purchased />} />
