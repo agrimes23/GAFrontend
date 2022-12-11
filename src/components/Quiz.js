@@ -203,7 +203,7 @@ const Quiz = (props) => {
                                 <label>Masculine</label>
                             </div>
                             <div>
-                                <input className="m-2" type="radio" name="genderclothing" value="Women" onChange={handleChange}/>
+                                <input className="m-2" type="radio" name="genderclothing" value="Ladies" onChange={handleChange}/>
                                 <label>Feminine</label>
                             </div>
                             <div>

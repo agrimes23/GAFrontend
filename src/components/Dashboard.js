@@ -3,18 +3,14 @@ import Clothes from './Clothes.js'
 import axios from 'axios'
 
 const Dashboard = (props) => {
-    const [user, setUser] = useState(props.userInfo)
-    
     const [preferred, setPreferred] = useState(props.clothes)
-
-    // const genderPreferred = preferred ? preferred.filter(elem => props.userInfo.preference.genderclothing === elem.CatName) : null
 
 
     return (
         <>
             <div className="container-fluid">
                 <div className="text-center my-5">
-                    <h1 className="my-5">Welcome, {user.name}Alex!</h1>
+                    <h1 className="my-5">Welcome, {props.userInfo.name}Alex!</h1>
                     <h3>Outfits and styles curated just for you</h3>
                 </div>
                 <hr/>
