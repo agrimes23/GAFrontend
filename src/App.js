@@ -20,22 +20,23 @@ const App = () => {
   //   .catch((error) => console.log(error))
   // }
 
+  // function for register route
   const handleCreateUser = (data) => {
     axios.post('http://localhost:3000/', data)
-    .then((response) => {
-      console.log(response.data)
-      setUserInfo(response.data)
-    })
+    .then((response) => setUserInfo(response.data))
   }
 
+  // function for quiz route
   const handleEditUser = (data) => {
     axios.put('http://localhost:3000/quiz/' + userInfo._id, data)
-    .then(response => {
-      console.log(response.data)
-      setUserInfo(response.data)
-    })
+    .then(response => setUserInfo(response.data))
   }
 
+  // function for login route
+  const handleLogin = (data) => {
+    axios.post('http://localhost:3000/login', data)
+    .then(response => setUserInfo(response.data))
+  }
 
 
 
@@ -75,7 +76,7 @@ const App = () => {
     <Navbar/>
       <Routes>    
         <Route exact path="/" element={<Signup handleCreateUser={handleCreateUser}/>} />
-        <Route path="/login" element={<Login />}/>
+        <Route path="/login" element={<Login handleLogin={handleLogin}/>}/>
         <Route path="/dashboard" element={<Dashboard />}/>
         <Route path="/quiz" element={<Quiz handleEditUser={handleEditUser}/>}/>
         {/* TODO: check to see if it works */}
