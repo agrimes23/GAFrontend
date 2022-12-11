@@ -13,6 +13,7 @@ import { Route, Routes, Link } from 'react-router-dom'
 const App = () => {
 
   const [userInfo, setUserInfo] = useState( {} )
+  const [clothes, setClothes] = useState([])
 
   // const getUserInfo = () => {
   //   axios.get('http://localhost:3000/')
@@ -36,6 +37,25 @@ const App = () => {
   const handleLogin = (data) => {
     axios.post('http://localhost:3000/login', data)
     .then(response => setUserInfo(response.data))
+  }
+
+  // function that on site start will load the needed items into clothes state.
+  const handlePref = async () => {
+    const options = {
+        method: 'GET',
+        url: 'https://apidojo-hm-hennes-mauritz-v1.p.rapidapi.com/categories/list',
+        params: {lang: 'en', country: 'us'},
+        headers: {
+          'X-RapidAPI-Key': '18198b9e6fmsh35966d93fe90053p1badeejsn680060b71161',
+          'X-RapidAPI-Host': 'apidojo-hm-hennes-mauritz-v1.p.rapidapi.com'
+        }
+    }
+
+    const response = await axios.request(options)
+    const data = await response.data
+    
+    const genderArray = response.data.filter(elem => elem.CatName === userInfo.gender)
+    setClothes(genderArray)
   }
 
 
@@ -66,9 +86,10 @@ const App = () => {
     })
   }
 
-  // useEffect (() => {
+  useEffect (() => {
   //   getUserInfo()
-  // }, [])
+        handlePref()
+  }, [])
 
   return (
     <>
@@ -77,7 +98,7 @@ const App = () => {
       <Routes>    
         <Route exact path="/" element={<Signup handleCreateUser={handleCreateUser}/>} />
         <Route path="/login" element={<Login handleLogin={handleLogin}/>}/>
-        <Route path="/dashboard" element={<Dashboard />}/>
+        <Route path="/dashboard" element={<Dashboard userInfo={userInfo} clothes={clothes}/>} />
         <Route path="/quiz" element={<Quiz handleEditUser={handleEditUser}/>}/>
         {/* TODO: check to see if it works */}
         <Route path="/cart" element={<Cart user={userInfo} handleDelete={handleDelete} handleEdit={handleEdit} />}/>

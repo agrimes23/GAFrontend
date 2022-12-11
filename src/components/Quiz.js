@@ -199,11 +199,11 @@ const Quiz = (props) => {
                     <div>
                         <div className="row">
                             <div>
-                                <input className="m-2" type="radio" name="genderclothing" value="masculine" onChange={handleChange}/>
+                                <input className="m-2" type="radio" name="genderclothing" value="Men" onChange={handleChange}/>
                                 <label>Masculine</label>
                             </div>
                             <div>
-                                <input className="m-2" type="radio" name="genderclothing" value="feminine" onChange={handleChange}/>
+                                <input className="m-2" type="radio" name="genderclothing" value="Women" onChange={handleChange}/>
                                 <label>Feminine</label>
                             </div>
                             <div>
