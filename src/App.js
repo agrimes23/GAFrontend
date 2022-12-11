@@ -15,11 +15,12 @@ const App = () => {
   const [userInfo, setUserInfo] = useState( {} )
   const [clothes, setClothes] = useState([])
 
-  // const getUserInfo = () => {
-  //   axios.get('http://localhost:3000/')
-  //   .then((res) => setUserInfo(res.data), (err) => console.log(err))
-  //   .catch((error) => console.log(error))
-  // }
+  // grabs all clothes objects from our db
+  const getClothes = () => {
+    axios.get('http://localhost:3000/')
+    .then((res) => setClothes(res.data), (err) => console.log(err))
+    .catch((error) => console.log(error))
+  }
 
   // function for register route
   const handleCreateUser = (data) => {
@@ -69,8 +70,7 @@ const App = () => {
   }
 
   useEffect (() => {
-  //   getUserInfo()
-        // handlePref()
+    getClothes()
   }, [])
 
   return (
