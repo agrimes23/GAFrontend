@@ -14,11 +14,11 @@ const App = () => {
 
   const [userInfo, setUserInfo] = useState( {} )
 
-  // const getUserInfo = () => {
-  //   axios.get('http://localhost:3000/')
-  //   .then((res) => setUserInfo(res.data), (err) => console.log(err))
-  //   .catch((error) => console.log(error))
-  // }
+  const getUserInfo = () => {
+    axios.get('http://localhost:3000/')
+    .then((res) => setUserInfo(res.data), (err) => console.log(err))
+    .catch((error) => console.log(error))
+  }
 
   const handleCreateUser = (data) => {
     axios.post('http://localhost:3000/', data)
@@ -28,17 +28,17 @@ const App = () => {
     })
   }
 
-  // const handleEdit = (data) => {
-  //   axios.put('http://localhost:3000/cart/' + data._id, data)
-  //   .then((response) => {
-  //     // FIXME: userInfo.cart might be different...
-  //     let newItems = userInfo.cart.map((cartItem) => {
-  //       return cartItem._id !== data._id ? cartItem : data
-  //     })
-  //     // I don't need to add anything else here right..?
-  //     // TODO: need to double check backend to see what's happening on an update
-  //   })
-  // }
+  const handleEdit = (data) => {
+    axios.put('http://localhost:3000/cart/' + data._id, data)
+    .then((response) => {
+      // FIXME: userInfo.cart might be different...
+      let newItems = userInfo.cart.map((cartItem) => {
+        return cartItem._id !== data._id ? cartItem : data
+      })
+      // I don't need to add anything else here right..?
+      // TODO: need to double check backend to see what's happening on an update
+    })
+  }
 
   const handleDelete = (deletedItem) => {
     axios.delete('http://localhost:3000/cart/' + deletedItem._id)
@@ -54,10 +54,11 @@ const App = () => {
     })
   }
 
-  // useEffect (() => {
-  //   getUserInfo()
-  // }, [])
+  useEffect (() => {
+    getUserInfo()
+  }, [])
 
+console.log(userInfo)
   return (
     <>
     {/* Don't need to put these through map right? */}
