@@ -87,11 +87,12 @@ const App = () => {
   }
 
   useEffect (() => {
-  //   getUserInfo()
+    getUserInfo()
         handlePref()
   }, [])
 
 console.log(userInfo)
+
   return (
     <>
     {/* Don't need to put these through map right? No, the dashboard component will have a clothes component which will be put thru a map.*/}

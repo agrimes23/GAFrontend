@@ -37,21 +37,22 @@ const Cart = (props) => {
         (event.target.value === "+") ? setItemNum(itemNum + 1) : setItemNum(itemNum - 1)
     }
 
-    // const calculateTotal = () => {
-    //     props.user[0].cart.map((cartItem)=> { 
-    //         return (
-    //             <>
-    //                 setPriceTotal(priceTotal + parseInt(cartItem.price))
-    //             </>
-    //         )
-    //     })
-    // }
+    const calculateTotal = () => {
+        props.user[0].cart.map((cartItem)=> { 
+            return (
+                <>
+                    setPriceTotal(priceTotal + parseInt(cartItem.price))
+                </>
+            )
+        })
+    }
 
-    // const calculateTax = () => {
-    //     setTotalTax(((priceTotal + 12) * 0.625).toFixed(2))
-    // }
+    const calculateTax = () => {
+        setTotalTax(((priceTotal + 12) * 0.625).toFixed(2))
+    }
 
 
+console.log("Cart.js page: " + props.user)
 
     return (
         <>
@@ -61,10 +62,10 @@ const Cart = (props) => {
                 {/* List of items in cart */}
                 
                 <div className="flex-column flex-grow-1 d-inline-block">
-                    {/* {props.user[0].cart.map((cartItem)=> {  */}
+                    {props.user[0].cart.map((cartItem)=> { 
                     {/* each item */}
-                     {/* return (
-                      <> */}
+                     return (
+                      <>
                         <div className="flex-row card p-5 cart-card m-5">
                                 {/* <img src={cartItem.image} className="cart-img float-left" /> */}
                                 <img src="https://img.ltwebstatic.com/images3_pi/2022/09/20/16636601306d90d32495f68b5a3c37e8c05c846f5d_thumbnail_900x.webp" className="cart-img float-left"></img>
@@ -81,9 +82,9 @@ const Cart = (props) => {
                                 <button className="btn btn-danger mt-4 mx-2 w-50" onClick={()=>{props.handleDelete()}} >Delete</button>
                             </div>
                         </div>
-                    {/* </>
+                    </>
                     )
-                    })} */}
+                    })}
                     {/* <div className="flex-row card p-5 cart-card m-5">
                             <img src="https://img.ltwebstatic.com/images3_pi/2022/09/20/16636601306d90d32495f68b5a3c37e8c05c846f5d_thumbnail_900x.webp" className="cart-img float-left" />
                         <div className="row d-flex cart-info my-auto m-4">
@@ -103,16 +104,16 @@ const Cart = (props) => {
                 </div>
 
                 {/* Total and checkout */}
-                {/* {calculateTotal()}
-                {calculateTax()} */}
+                {calculateTotal()}
+                {calculateTax()}
                 <div className="flex-column flex-grow-1 d-flex total-card m-5">
                     <div className="card p-5">
                         <h3 className="my-5">Order Summary</h3>
-                        {/* <h6 className="my-3">Total Items: ${priceTotal}</h6>
+                        <h6 className="my-3">Total Items: ${priceTotal}</h6>
                         <h6 className="my-3">Shipping & handling: $12.00</h6>
                         <h6 className="my-3">Subtotal: {priceTotal + 12}</h6>
                         <h6 className="my-3">Estimated Tax: ${totalTax}</h6>
-                        <h6 className="my-5">Order Total: {priceTotal + 12 + totalTax}</h6> */}
+                        <h6 className="my-5">Order Total: {priceTotal + 12 + totalTax}</h6>
                         <input type="submit" onClick={checkOut} className="btn btn-info my-3" value="checkout"/>
                         
                         {showProcessing ? <h5 className="processing mx-5 my-4">processing</h5> : null}

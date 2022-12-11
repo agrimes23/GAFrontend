@@ -28,10 +28,10 @@ const Login = (props) => {
                     <form onSubmit={handleSubmit} className="d-block row p-5 w-75 m-auto">
 
                         <label htmlFor='email'>Email</label>
-                        <input className="form-control" type="text" name="email" onChange={handleChange}></input>
+                        <input className="form-control" type="email" name="email" onChange={handleChange}></input>
 
                         <label htmlFor='password'>Password:</label>
-                        <input className="form-control" type="text" name="password" onChange={handleChange}></input>
+                        <input className="form-control" type="password" name="password" onChange={handleChange}></input>
 
                         <input className="btn btn-info my-5" type="submit" value="Login"/>
                     </form>           
