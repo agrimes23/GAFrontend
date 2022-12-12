@@ -17,11 +17,11 @@ const App = () => {
   const [arrayOfClothes, setArrayOfClothes] = useState([])
   
 
-  const getUserInfo = () => {
-    axios.get('http://localhost:3000/')
-    .then((res) => setUserInfo(res.data), (err) => console.log(err))
-    .catch((error) => console.log(error))
-  }
+  // const getUserInfo = () => {
+  //   axios.get('http://localhost:3000/')
+  //   .then((res) => setUserInfo(res.data), (err) => console.log(err))
+  //   .catch((error) => console.log(error))
+  // }
 
   // grabs all clothes objects from our db
   const getClothes = () => {
