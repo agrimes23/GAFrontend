@@ -61,7 +61,7 @@ const Cart = (props) => {
                 {/* List of items in cart */}
                 
                 <div className="flex-column flex-grow-1 d-inline-block">
-                    {props.clothes.map((cartItem)=> { 
+                    {props.clothes[0].cart.map((cartItem)=> { 
                     {/* each item */}
                      return (
                       <>

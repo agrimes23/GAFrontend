@@ -82,7 +82,7 @@ const Dashboard = (props) => {
                         </div>
                 </div>
                 <div className="container-fluid d-flex justify-content-center w-75 mt-5 card-page">
-                    <Clothes />
+                    <Clothes clothes={props.clothes} />
                 </div>
             </div>
         </>

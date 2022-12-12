@@ -76,7 +76,7 @@ const App = () => {
   }
 
   useEffect (() => {
-    getUserInfo()
+    // getUserInfo()
     getClothes()
     
   }, [])

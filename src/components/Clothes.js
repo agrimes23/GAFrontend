@@ -1,14 +1,13 @@
 import {useState} from 'react'
 
 
-
-
 const Clothes = (props) => {
     // this is just a test. Just a placeholder until we get clothes on the page
-    const [test, setTest] = useState([{name: "brrr sweater", price: 10}, {name: "sweater weather", price: 5}, {name: "brrr sweater", price: 10}, {name: "brrr sweater", price: 10}, {name: "brrr sweater", price: 10}, {name: "brrr sweater", price: 10}, {name: "brrr sweater", price: 10},])
+    const [test, setTest] = useState([{name: "brrr sweater", price: 10}, {name: "sweater weather", price: 5}, {name: "brrr sweater", price: 10}, {name: "brrr sweater", price: 10}])
 
+    //FIXME: Only need a handle submit?? 
     // const handleChange = (event) => {
-    //     setAnimal({...animal, [event.target.name]: event.target.value})
+    //     setTest({...props.clothes[0].cart, [event.target.name]: event.target.value})
     // }
     // const handleSubmit = (event) => {
     //     event.preventDefault()
@@ -34,6 +33,7 @@ const Clothes = (props) => {
                                     <div className="clothing-color d-inline-block m-2"></div>
                                     <div className="clothing-color d-inline-block m-2"></div>
                             </div>
+                            {/* FIXME: How can you submit the above values? */}
                             <input type='submit' className="btn btn-primary d-block" value="Add to Cart"/>
                             </div>   
                         </form>
