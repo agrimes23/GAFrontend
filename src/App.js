@@ -78,9 +78,10 @@ const App = () => {
   useEffect (() => {
     getUserInfo()
     getClothes()
+    
   }, [])
 
-console.log(userInfo)
+  
 
   return (
     <>
