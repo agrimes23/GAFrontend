@@ -9,7 +9,7 @@ const Dashboard = (props) => {
 console.log(props.userInfo)
     return (
         <>
-            <div className="container-fluid">
+            <div className="container-fluid dash-page">
                 <div className="text-center my-5">
                     <h1 className="my-5">Welcome, {props.userInfo.name}!</h1>
                     <h3>Outfits and styles curated just for you</h3>

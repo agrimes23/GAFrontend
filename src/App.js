@@ -48,6 +48,18 @@ const App = () => {
     .then(response => setUserInfo(response.data))
   }
 
+  // FIXME: function to Add to Cart
+  const handleAddToCart = (clothes) => {
+    axios.post(`http://localhost:3000/add/${userInfo._id}/${clothes._id}`)
+    .then((response) => {
+      const user = { 
+        email: userInfo.email,
+        password: userInfo.password
+      }
+      handleLogin(user)
+    })
+  }
+
   const handleEdit = (data) => {
     axios.put('http://localhost:3000/cart/' + data._id, data)
     .then((response) => {
@@ -158,7 +170,7 @@ const App = () => {
       <Routes>    
         <Route exact path="/" element={<Signup handleCreateUser={handleCreateUser}/>} />
         <Route path="/login" element={<Login handleLogin={handleLogin}/>}/>
-        <Route path="/dashboard" element={<Dashboard userInfo={userInfo} item={arrayOfClothes}/>} />
+        <Route path="/dashboard" element={<Dashboard userInfo={userInfo} item={arrayOfClothes} handleAddToCart={handleAddToCart}/>} />
         <Route path="/quiz" element={<Quiz handleEditUser={handleEditUser}/>}/>
         {/* TODO: check to see if it works */}
         <Route path="/cart" element={<Cart clothes={clothes} handleDelete={handleDelete} handleEdit={handleEdit} />}/>

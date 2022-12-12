@@ -83,8 +83,16 @@ nav {
 
 /******* Clothing Dashboard Styling *******/
 
+.dash-page {
+  padding-bottom: 100px;
+}
+
 .card {
   width: 350px;
+}
+
+.card-title {
+  height: 2.5em;
 }
 
 .clothing-color {
