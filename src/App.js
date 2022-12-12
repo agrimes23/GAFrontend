@@ -58,6 +58,7 @@ const App = () => {
       }
       handleLogin(user)
     })
+    console.log(userInfo)
   }
 
   const handleEdit = (data) => {

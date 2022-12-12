@@ -6,7 +6,7 @@ const Dashboard = (props) => {
 
     const arr = props.item.map((it, i) => <Clothes item={it} key={i} userInfo={props.userInfo} handleAddToCart={props.handleAddToCart}/>)
 
-console.log(props.userInfo)
+
     return (
         <>
             <div className="container-fluid dash-page">
