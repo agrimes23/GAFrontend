@@ -14,6 +14,7 @@ const App = () => {
 
   const [userInfo, setUserInfo] = useState( {} )
   const [clothes, setClothes] = useState([])
+  
 
   // grabs all clothes objects from our db
   const getClothes = () => {
