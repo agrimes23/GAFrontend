@@ -13,6 +13,7 @@ import { Route, Routes, Link } from 'react-router-dom'
 const App = () => {
 
   const [userInfo, setUserInfo] = useState( {} )
+  const [clothes, setClothes] = useState([])
 
   const getUserInfo = () => {
     axios.get('http://localhost:3000/')
@@ -20,13 +21,33 @@ const App = () => {
     .catch((error) => console.log(error))
   }
 
+  // grabs all clothes objects from our db
+  const getClothes = () => {
+    axios.get('http://localhost:3000/')
+    .then((res) => setClothes(res.data), (err) => console.log(err))
+    .catch((error) => console.log(error))
+  }
+
+  // function for register route
   const handleCreateUser = (data) => {
     axios.post('http://localhost:3000/', data)
-    .then((response) => {
-      console.log(response.data)
-      setUserInfo(response.data)
-    })
+    .then((response) => setUserInfo(response.data))
   }
+
+  // function for quiz route
+  const handleEditUser = (data) => {
+    axios.put('http://localhost:3000/quiz/' + userInfo._id, data)
+    .then(response => setUserInfo(response.data))
+  }
+
+  // function for login route
+  const handleLogin = (data) => {
+    axios.post('http://localhost:3000/login', data)
+    .then(response => setUserInfo(response.data))
+  }
+
+
+
 
   const handleEdit = (data) => {
     axios.put('http://localhost:3000/cart/' + data._id, data)
@@ -55,21 +76,24 @@ const App = () => {
   }
 
   useEffect (() => {
-    getUserInfo()
+    // getUserInfo()
+    getClothes()
+    
   }, [])
 
-console.log(userInfo)
+  
+
   return (
     <>
-    {/* Don't need to put these through map right? */}
+    {/* Don't need to put these through map right? No, the dashboard component will have a clothes component which will be put thru a map.*/}
     <Navbar/>
       <Routes>    
         <Route exact path="/" element={<Signup handleCreateUser={handleCreateUser}/>} />
-        <Route path="/login" element={<Login />}/>
-        <Route path="/dashboard" element={<Dashboard />}/>
-        <Route path="/quiz" element={<Quiz />}/>
+        <Route path="/login" element={<Login handleLogin={handleLogin}/>}/>
+        <Route path="/dashboard" element={<Dashboard userInfo={userInfo} clothes={clothes}/>} />
+        <Route path="/quiz" element={<Quiz handleEditUser={handleEditUser}/>}/>
         {/* TODO: check to see if it works */}
-        <Route path="/cart" element={<Cart user={userInfo} handleDelete={handleDelete} handleEdit={handleEdit} />}/>
+        <Route path="/cart" element={<Cart clothes={clothes} handleDelete={handleDelete} handleEdit={handleEdit} />}/>
         <Route path="/purchased" element={<Purchased />} />
       </Routes>
     </>
