@@ -2,7 +2,7 @@ import {useState} from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
 const Quiz = (props) => {
-    const [preference , setPreference] = useState({colors: '', pricerange: '', shortsleeves: '', longsleeves: '', topsize: '', pants: '', shorts: '', skirts: '', bottomssize: '', genderclothing: ''})
+    const [preference , setPreference] = useState({colors: 'None', pricerange: 'None', shortsleeves: 'None', longsleeves: 'None', topsize: 'None', pants: 'None', shorts: 'None', skirts: 'None', bottomssize: 'None', genderclothing: 'None'})
 
     // replaces the Link hook due to Link hook preventing submit of form.
     const navigate = useNavigate()
@@ -81,11 +81,11 @@ const Quiz = (props) => {
                     <div>
                         <div className="row">
                             <div>
-                                <input className="m-2" type="checkbox" name="shortsleeves" value="Short-sleeves" onChange={handleChange}/>
+                                <input className="m-2" type="checkbox" name="shortsleeves" value="shortsleeves" onChange={handleChange}/>
                                 <label className="d-inline">Short-sleeved</label>
                             </div>
                             <div>
-                                <input className="m-2" type="checkbox" name="longsleeves" value="Long-sleeves" onChange={handleChange}/>
+                                <input className="m-2" type="checkbox" name="longsleeves" value="longsleeves" onChange={handleChange}/>
                                 <label className="d-inline">Long-sleeved</label>
                             </div>
                         </div>

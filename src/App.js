@@ -71,7 +71,10 @@ const App = () => {
 
   useEffect (() => {
     getClothes()
+    
   }, [])
+
+  
 
   return (
     <>
