@@ -42,9 +42,6 @@ const App = () => {
     .then(response => setUserInfo(response.data))
   }
 
-
-
-
   const handleEdit = (data) => {
     axios.put('http://localhost:3000/cart/' + data._id, data)
     .then((response) => {
@@ -71,6 +68,7 @@ const App = () => {
     })
   }
 
+  // function that sets arrayOfClothes to an array filled with filtered items
   const handleFiltered = () => {
      // this condition prevents the undefined error
      if(userInfo.preference){
