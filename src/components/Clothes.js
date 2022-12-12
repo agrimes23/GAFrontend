@@ -2,44 +2,51 @@ import {useState} from 'react'
 
 
 const Clothes = (props) => {
-    // this is just a test. Just a placeholder until we get clothes on the page
-    const [test, setTest] = useState([{name: "brrr sweater", price: 10}, {name: "sweater weather", price: 5}, {name: "brrr sweater", price: 10}, {name: "brrr sweater", price: 10}])
 
-    //FIXME: Only need a handle submit?? 
-    // const handleChange = (event) => {
-    //     setTest({...props.clothes[0].cart, [event.target.name]: event.target.value})
-    // }
-    // const handleSubmit = (event) => {
-    //     event.preventDefault()
+    // this will allow changes to the cart
+    // const [chosenColor, setChosenColor] = useState()
+    // const [chosenHex, setChosenHex] = useState()
+    // const [getIndex, setGetIndex] = useState(0)
+    // const [index, setIndex] = useState(0)
 
-    //     props.handleEdit(animal)
-    // }
+
+// // TODO: do this after successfully added to cart. Need to put onClick={handleClick} on div
+//     const handleClick = (e) => {
+//         setGetIndex(index)
+//         setChosenColor({...props.item.articleColorNames, [e.target.name]: props.item.articleColorNames[index]})
+//         setChosenHex({...props.item.rgbColors, [e.target.name]: e.target.value})
+//     }
+
+
+// Just want to submit whatever item was clicked on to cart array
+    const handleSubmit = (e) => {
+      e.preventDefault()
+      props.handleAddToCart(props.item)
+    }
+
+
 
     return (
         <>
-            <div className="row justify-content-center">
-                {test.map((item) => {
-                return (
-                    
-                    <div className="card clothes-card m-1">
-                        <form >
-                            <img src="https://img.ltwebstatic.com/images3_pi/2022/09/20/16636601306d90d32495f68b5a3c37e8c05c846f5d_thumbnail_900x.webp" className="card-img-top clothing-img" />
-                            <div className="card-body">
-                                <h4 className="card-title" name="name" value={item.name}><strong>{item.name}</strong></h4>
-                                <h5 className="card-text"  name="price" value={item.price}>${item.price}</h5>
-                                <div className="d-inline-block">
-                                    {/* how to connect when color is clicked, to change the image */}
-                                    <div className="clothing-color d-inline-block m-2"></div>
-                                    <div className="clothing-color d-inline-block m-2"></div>
-                                    <div className="clothing-color d-inline-block m-2"></div>
-                            </div>
-                            {/* FIXME: How can you submit the above values? */}
-                            <input type='submit' className="btn btn-primary d-block" value="Add to Cart"/>
-                            </div>   
-                        </form>
-                    </div>
-                )
-                })}
+        
+            <div className="card clothes-card m-1">
+            <form onSubmit={handleSubmit}>
+                <img src={props.item.images[0].url} className="card-img-top clothing-img" />
+                <div className="card-body">
+                <h4 className="card-title" name="name"><strong>{props.item.name}</strong></h4>
+                <h5 className="card-text" name="price">{props.item.price.formattedValue}</h5>
+                {/* <div className="d-inline-block">
+                    {props.item.rgbColors.map((hexColor) => {
+                        return (
+                        <>
+                            <div className="clothing-color d-inline-block m-2" name="rgbColors" style={{background: hexColor}}></div>
+                        </>
+                        )
+                    })}
+                </div> */}
+                <input type="submit" className="btn btn-primary d-block" value="Add to Cart"/> 
+                </div>           
+            </form>
             </div>
         </>
     )
