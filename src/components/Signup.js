@@ -25,7 +25,7 @@ const Signup = (props) => {
                     <div className="mt-5 mx-5">
                         <h1>Sign Up for personalized clothing options today!</h1>
                     </div>
-                    <form onSubmit={handleSubmit} className="d-block row p-5 w-75 m-auto">
+                    <form onSubmit={handleSubmit} className="d-block row px-5 pt-5 w-75 m-auto">
                         <label htmlFor='name'>Name:</label>
                         <input className="form-control" type="text" name="name" required onChange={handleChange}></input>
 
@@ -36,9 +36,10 @@ const Signup = (props) => {
                         <input className="form-control" type="password" name="password" required onChange={handleChange}></input>
 
                         <input className="btn btn-info my-5" type="submit" value="Signup & take the quiz!"/>
-                    </form>           
+                    </form>
+                    <div className="mb-5">already have an account? <Link to="/login">Login here</Link></div>         
                 </div> 
-                <div className="already have an account? Log in here"></div>
+                
             </div>
 
 

@@ -37,15 +37,15 @@ const Cart = (props) => {
         (event.target.value === "+") ? setItemNum(itemNum + 1) : setItemNum(itemNum - 1)
     }
 
-    const calculateTotal = () => {
-        props.clothes.cart.map((cartItem)=> { 
-            return (
-                <>
-                    setPriceTotal(priceTotal + parseInt(cartItem.price))
-                </>
-            )
-        })
-    }
+    // const calculateTotal = () => {
+    //     props.clothes.cart.map((cartItem)=> { 
+    //         return (
+    //             <>
+    //                 setPriceTotal(priceTotal + parseInt(cartItem.price))
+    //             </>
+    //         )
+    //     })
+    // }
 
     const calculateTax = () => {
         setTotalTax(((priceTotal + 12) * 0.625).toFixed(2))
@@ -61,15 +61,15 @@ const Cart = (props) => {
                 {/* List of items in cart */}
                 
                 <div className="flex-column flex-grow-1 d-inline-block">
-                    {props.clothes.cart.map((cartItem)=> { 
+                    {props.clothes.map((cartItem)=> { 
                     {/* each item */}
                      return (
                       <>
                         <div className="flex-row card p-5 cart-card m-5">
-                                <img src={cartItem.image} className="cart-img float-left" />
+                                {/* <img src={cartItem.image} className="cart-img float-left" /> */}
                                 <img src="https://img.ltwebstatic.com/images3_pi/2022/09/20/16636601306d90d32495f68b5a3c37e8c05c846f5d_thumbnail_900x.webp" className="cart-img float-left"></img>
                             <div className="row d-flex cart-info my-auto m-4">
-                                {/* <h4 className=""><strong>{cartItem.name}</strong></h4> */}
+                                <h4 className=""><strong>{cartItem.name}</strong></h4>
                                 <h5 className="">Price: ${cartItem.price}</h5>
                                 <h5 className="">Color: {cartItem.articleColorNames}</h5>
                                 <div className="d-flex">
@@ -103,8 +103,8 @@ const Cart = (props) => {
                 </div>
 
                 {/* Total and checkout */}
-                {calculateTotal()}
-                {calculateTax()}
+                {/* {calculateTotal()} */}
+                {/* {calculateTax()} */}
                 <div className="flex-column flex-grow-1 d-flex total-card m-5">
                     <div className="card p-5">
                         <h3 className="my-5">Order Summary</h3>

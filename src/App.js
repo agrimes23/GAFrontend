@@ -93,7 +93,7 @@ const App = () => {
         <Route path="/dashboard" element={<Dashboard userInfo={userInfo} clothes={clothes}/>} />
         <Route path="/quiz" element={<Quiz handleEditUser={handleEditUser}/>}/>
         {/* TODO: check to see if it works */}
-        <Route path="/cart" element={<Cart user={userInfo} handleDelete={handleDelete} handleEdit={handleEdit} />}/>
+        <Route path="/cart" element={<Cart clothes={clothes} handleDelete={handleDelete} handleEdit={handleEdit} />}/>
         <Route path="/purchased" element={<Purchased />} />
       </Routes>
     </>
