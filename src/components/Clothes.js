@@ -4,8 +4,6 @@ import {useState} from 'react'
 const Clothes = (props) => {
 
     // this will allow changes to the cart
-    const [cart, setCart] = useState([...props.userInfo.cart])
-    const [item, setItem] = useState({...props.item})
     // const [chosenColor, setChosenColor] = useState()
     // const [chosenHex, setChosenHex] = useState()
     // const [getIndex, setGetIndex] = useState(0)
@@ -23,9 +21,7 @@ const Clothes = (props) => {
 // Just want to submit whatever item was clicked on to cart array
     const handleSubmit = (e) => {
       e.preventDefault()
-      setCart(...props.userInfo.cart, item)
-      console.log(cart)
-    //   props.handleAddToCart(cart)
+      props.handleAddToCart(props.item)
     }
 
 
@@ -39,7 +35,7 @@ const Clothes = (props) => {
                 <div className="card-body">
                 <h4 className="card-title" name="name"><strong>{props.item.name}</strong></h4>
                 <h5 className="card-text" name="price">{props.item.price.formattedValue}</h5>
-                <div className="d-inline-block">
+                {/* <div className="d-inline-block">
                     {props.item.rgbColors.map((hexColor) => {
                         return (
                         <>
@@ -47,7 +43,7 @@ const Clothes = (props) => {
                         </>
                         )
                     })}
-                </div>
+                </div> */}
                 <input type="submit" className="btn btn-primary d-block" value="Add to Cart"/> 
                 </div>           
             </form>
