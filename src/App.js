@@ -15,6 +15,12 @@ const App = () => {
   const [userInfo, setUserInfo] = useState( {} )
   const [clothes, setClothes] = useState([])
 
+  const getUserInfo = () => {
+    axios.get('http://localhost:3000/')
+    .then((res) => setUserInfo(res.data), (err) => console.log(err))
+    .catch((error) => console.log(error))
+  }
+
   // grabs all clothes objects from our db
   const getClothes = () => {
     axios.get('http://localhost:3000/')
@@ -70,12 +76,8 @@ const App = () => {
   }
 
   useEffect (() => {
-<<<<<<< HEAD
     getUserInfo()
-        handlePref()
-=======
     getClothes()
->>>>>>> 9c3a6e145b6689dfdd653a47c7839b518b1eabc3
   }, [])
 
 console.log(userInfo)

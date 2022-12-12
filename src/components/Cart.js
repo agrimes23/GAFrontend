@@ -38,7 +38,7 @@ const Cart = (props) => {
     }
 
     const calculateTotal = () => {
-        props.user[0].cart.map((cartItem)=> { 
+        props.clothes.cart.map((cartItem)=> { 
             return (
                 <>
                     setPriceTotal(priceTotal + parseInt(cartItem.price))
@@ -52,7 +52,6 @@ const Cart = (props) => {
     }
 
 
-console.log("Cart.js page: " + props.user)
 
     return (
         <>
@@ -62,17 +61,17 @@ console.log("Cart.js page: " + props.user)
                 {/* List of items in cart */}
                 
                 <div className="flex-column flex-grow-1 d-inline-block">
-                    {props.user[0].cart.map((cartItem)=> { 
+                    {props.clothes.cart.map((cartItem)=> { 
                     {/* each item */}
                      return (
                       <>
                         <div className="flex-row card p-5 cart-card m-5">
-                                {/* <img src={cartItem.image} className="cart-img float-left" /> */}
+                                <img src={cartItem.image} className="cart-img float-left" />
                                 <img src="https://img.ltwebstatic.com/images3_pi/2022/09/20/16636601306d90d32495f68b5a3c37e8c05c846f5d_thumbnail_900x.webp" className="cart-img float-left"></img>
                             <div className="row d-flex cart-info my-auto m-4">
                                 {/* <h4 className=""><strong>{cartItem.name}</strong></h4> */}
-                                {/* <h5 className="">Price: ${cartItem.price}</h5>
-                                <h5 className="">Color: {cartItem.articleColorNames}</h5> */}
+                                <h5 className="">Price: ${cartItem.price}</h5>
+                                <h5 className="">Color: {cartItem.articleColorNames}</h5>
                                 <div className="d-flex">
                                     <h5 className="pt-1 my-3 mr-3">Qty: {itemNum}</h5>
                                     <button className="btn btn-dark rounded-circle my-3 mx-2 pb-2" value="+" onClick={adjustItemNum}>+</button>
