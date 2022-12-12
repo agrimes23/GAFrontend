@@ -17,29 +17,19 @@ const Clothes = (props) => {
 
     return (
         <>
-            <div className="row justify-content-center">
-                {test.map((item) => {
-                return (
-                    
-                    <div className="card clothes-card m-1">
-                        <form >
-                            <img src="https://img.ltwebstatic.com/images3_pi/2022/09/20/16636601306d90d32495f68b5a3c37e8c05c846f5d_thumbnail_900x.webp" className="card-img-top clothing-img" />
-                            <div className="card-body">
-                                <h4 className="card-title" name="name" value={item.name}><strong>{item.name}</strong></h4>
-                                <h5 className="card-text"  name="price" value={item.price}>${item.price}</h5>
-                                <div className="d-inline-block">
-                                    {/* how to connect when color is clicked, to change the image */}
-                                    <div className="clothing-color d-inline-block m-2"></div>
-                                    <div className="clothing-color d-inline-block m-2"></div>
-                                    <div className="clothing-color d-inline-block m-2"></div>
-                            </div>
-                            {/* FIXME: How can you submit the above values? */}
-                            <input type='submit' className="btn btn-primary d-block" value="Add to Cart"/>
-                            </div>   
-                        </form>
-                    </div>
-                )
-                })}
+            <div className="card clothes-card m-1">
+                <img src={props.item.images[0].url} className="card-img-top clothing-img" />
+                <div className="card-body">
+                <h4 className="card-title"><strong>{props.item.name}</strong></h4>
+                <h5 className="card-text">{props.item.price.formattedValue}</h5>
+                <div className="d-inline-block">
+                    {/* how to connect when color is clicked, to change the image */}
+                    <div className="clothing-color d-inline-block m-2"></div>
+                    <div className="clothing-color d-inline-block m-2"></div>
+                    <div className="clothing-color d-inline-block m-2"></div>
+                </div>
+                <button className="btn btn-primary d-block">Add to Cart</button> 
+                </div>           
             </div>
         </>
     )
