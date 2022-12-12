@@ -14,6 +14,7 @@ const App = () => {
 
   const [userInfo, setUserInfo] = useState( {} )
   const [clothes, setClothes] = useState([])
+  const [arrayOfClothes, setArrayOfClothes] = useState([])
   
 
   // grabs all clothes objects from our db
@@ -70,10 +71,79 @@ const App = () => {
     })
   }
 
+  const handleFiltered = () => {
+     // this condition prevents the undefined error
+     if(userInfo.preference){
+      // arr that holds all the items we are looking for
+      let arr = []
+      // populates our arr based on preferences.
+      for(let key in userInfo.preference){
+          let object = userInfo.preference
+          // console.log(object[key])
+
+          if(object[key] === "shortsleeves"){
+              arr.push("T-shirts")
+          } 
+
+          if(object[key] === "longsleeves"){
+              arr.push("Cardigan", "Jacket", "Sweater", "Hoodie", "Coat", "Sweatshirt")
+          }
+
+          if(object[key] === "pants"){
+              arr.push("Pants", "Joggers")
+          }
+
+          if(object[key] === "shorts"){
+              arr.push("Shorts")
+          }
+
+          if(object[key] === "skirts"){
+              arr.push("Skirts", "Dress")
+          }
+
+      }
+      // filters items in by see if our arr array contains the items name.
+      const filteredByPref = clothes.filter(item => {
+          // splits each items name into an array so that each element is its own whole word.
+          let itemArr = item.name.split(' ')
+
+          // checks the last word of each item name to see if it is in our arr array.
+          if(arr.includes(itemArr[itemArr.length - 1])) return item
+      })
+
+      // filters items by the cost
+      const filteredByCost = filteredByPref.filter(item => {
+
+          if(item.price.formattedValue){
+              let priceArr = item.price.formattedValue.split(' ')
+              let price = priceArr[1].split('.')
+
+              if(userInfo.preference.pricerange === "Low-Price"){
+                  if (Number(price[0]) < 40){
+                      return item
+                  } 
+              } else if (userInfo.preference.pricerange === "Medium-Price"){
+                  if (Number(price[0]) < 60){
+                      return item
+                  }
+              } else if (userInfo.preference.pricerange === "High-Price"){
+                  if (Number(price[0]) < 100){
+                      return item
+                  }
+              }
+          }
+          
+
+      })
+
+      setArrayOfClothes([...filteredByCost])
+    }
+  }
+
   useEffect (() => {
     getClothes()
-    
-  }, [])
+    handleFiltered()
+  }, [userInfo])
 
   
 
@@ -84,7 +154,7 @@ const App = () => {
       <Routes>    
         <Route exact path="/" element={<Signup handleCreateUser={handleCreateUser}/>} />
         <Route path="/login" element={<Login handleLogin={handleLogin}/>}/>
-        <Route path="/dashboard" element={<Dashboard userInfo={userInfo} clothes={clothes}/>} />
+        <Route path="/dashboard" element={<Dashboard userInfo={userInfo} item={arrayOfClothes}/>} />
         <Route path="/quiz" element={<Quiz handleEditUser={handleEditUser}/>}/>
         {/* TODO: check to see if it works */}
         <Route path="/cart" element={<Cart user={userInfo} handleDelete={handleDelete} handleEdit={handleEdit} />}/>
