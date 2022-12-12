@@ -3,13 +3,13 @@ import Clothes from './Clothes.js'
 import axios from 'axios'
 
 const Dashboard = (props) => {
-    console.log(props.item)
+
     const arr = props.item.map((it, i) => <Clothes item={it} key={i}/>)
     return (
         <>
             <div className="container-fluid">
                 <div className="text-center my-5">
-                    <h1 className="my-5">Welcome, {props.userInfo.name}Alex!</h1>
+                    <h1 className="my-5">Welcome, {props.userInfo.name}!</h1>
                     <h3>Outfits and styles curated just for you</h3>
                 </div>
                 <hr/>

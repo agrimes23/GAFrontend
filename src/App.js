@@ -150,7 +150,6 @@ const App = () => {
     handleFiltered()
   }, [userInfo])
 
-  
 
   return (
     <>
