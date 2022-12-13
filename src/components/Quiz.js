@@ -1,5 +1,6 @@
 import {useState} from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import Navbar from './Navbar.js'
 
 const Quiz = (props) => {
     const [preference , setPreference] = useState({colors: 'None', pricerange: 'None', shortsleeves: 'None', longsleeves: 'None', topsize: 'None', pants: 'None', shorts: 'None', skirts: 'None', bottomssize: 'None', genderclothing: 'None'})
@@ -23,6 +24,7 @@ const Quiz = (props) => {
 
     return (
         <>
+        <Navbar/>
             <form onSubmit={handleSubmit} className="container-fluid card-container d-flex flex-column align-items-center w-100 quiz-page">    
                 <div className="bg-white quiz-title p-4">
                     <h1 className="text-center ">Your Style Quiz</h1>

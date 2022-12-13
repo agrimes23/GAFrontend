@@ -51,13 +51,16 @@ const App = () => {
   // adds selected color to object 
   // clothes is passed in, so that we know which clothes we are adding it too.
   // data we expect is just an object with key of selectedColor and value of color in string.
+  
+  // TODO: can update the quantity/counter
   const handleSelectColor = (clothes, data) => {
     axios.put('http://localhost:3000/color/' + clothes._id, data)
     .then(response => getClothes())
+    
   }
 
 
-  // FIXME: function to Add to Cart
+  // // Edit route for add to cart
   const handleAddToCart = (chosenClothes) => {
     axios.put(`http://localhost:3000/add/${userInfo._id}/${chosenClothes._id}`)
     .then((response) => {
@@ -78,8 +81,12 @@ const App = () => {
       let newItems = userInfo.cart.map((cartItem) => {
         return cartItem._id !== data._id ? cartItem : data
       })
-      // I don't need to add anything else here right..?
-      // TODO: need to double check backend to see what's happening on an update
+      const user = { 
+        email: userInfo.email,
+        password: userInfo.password
+      }
+      handleLogin(user)
+
     })
   }
 
@@ -178,8 +185,6 @@ const App = () => {
 
   return (
     <>
-    {/* Don't need to put these through map right? No, the dashboard component will have a clothes component which will be put thru a map.*/}
-    <Navbar/>
       <Routes>    
         <Route exact path="/" element={<Signup handleCreateUser={handleCreateUser}/>} />
         <Route path="/login" element={<Login handleLogin={handleLogin}/>}/>
