@@ -70,7 +70,7 @@ const Cart = (props) => {
                                 <h5 className="">Price: {cartItem.price.formattedValue}</h5>
                                
                                 
-                                {/* <h5 className="">Color: {cartItem.articleColorNames}</h5> */}
+                                <h5 className="">Color: {cartItem.articleColorNames}</h5>
                                 <div className="d-flex">
                                     <h5 className="pt-1 my-3 mr-3">Qty: {itemNum}</h5>
                                     <button className="btn btn-dark rounded-circle my-3 mx-2 pb-2" value="+" onClick={adjustItemNum}>+</button>

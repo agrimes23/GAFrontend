@@ -35,7 +35,7 @@ const Clothes = (props) => {
                 <div className="card-body">
                 <h4 className="card-title" name="name"><strong>{props.item.name}</strong></h4>
                 <h5 className="card-text" name="price">{props.item.price.formattedValue}</h5>
-                {/* <div className="d-inline-block">
+                <div className="d-inline-block">
                     {props.item.rgbColors.map((hexColor) => {
                         return (
                         <>
@@ -43,7 +43,7 @@ const Clothes = (props) => {
                         </>
                         )
                     })}
-                </div> */}
+                </div>
                 <input type="submit" className="btn btn-primary d-block" value="Add to Cart"/> 
                 </div>           
             </form>
