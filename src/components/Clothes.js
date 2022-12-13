@@ -24,14 +24,15 @@ const Clothes = (props) => {
       props.handleAddToCart(props.item)
     }
 
-    const hideButton = (event) => {
-        event.target.hidden = true
-        return (
-            <>
-                <h6>This item has been added to cart</h6>
-            </>
-        )
-    }
+    // const hideButton = (event) => {
+    //     setTimeout(1000)
+    //     event.target.hidden = true
+    //     // return (
+    //     //     <>
+    //     //         <h6>This item has been added to cart</h6>
+    //     //     </>
+    //     // )
+    // }
 
     // useEffect = () => {
 
@@ -54,7 +55,7 @@ const Clothes = (props) => {
                         )
                     })}
                 </div>
-                <input type="submit" className="btn btn-primary d-block" onClick={hideButton} value="Add to Cart"/> 
+                <input type="submit" className="btn btn-primary d-block" value="Add to Cart"/> 
                 </div>           
             </form>
             </div>

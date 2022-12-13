@@ -67,6 +67,8 @@ const Cart = (props) => {
 
     }, [props.userInfo.cart])
 
+    console.log(props.userInfo)
+
     return (
         <>
         <Navbar/>
