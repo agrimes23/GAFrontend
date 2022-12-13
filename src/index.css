@@ -5,9 +5,142 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+}
+
+html, body, #root {
+  height: 100%;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+
+/******* NavBar Styling *******/
+
+nav { 
+  font-family: 'Sora', sans-serif;
+  font-weight: 600;
+}
+
+.fa-cart-shopping {
+  color: white;
+  font-size: 1.7em;
+}
+
+.fa-shirt, .logo {
+  color: white;
+  text-decoration: none;
+  font-size: 1.3em;
+}
+
+
+/******* Signup & Login Styling *******/
+
+.signup-page, .login-page {
+  height: 100%;
+  background-image: url("https://st2.depositphotos.com/1068875/7956/i/450/depositphotos_79565488-stock-photo-distant-mountain-range-and-thin.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.signup-box, .login-box {
+  text-align: center;
+  width: 800px;
+  height: 600px;
+  border-radius: 5%;
+  z-index: 2;
+  position: absolute;
+  top: 25%;
+  left: 33%;
+  margin-top: -50px;
+  margin-left: -50px;
+  background-color: rgb(224, 224, 224);
+
+}
+
+.shadow {
+  box-shadow: inset 0 0 50px #000000;
+}
+
+/******* Quiz Styling *******/
+
+
+.quiz-page {
+  background: url("https://m.media-amazon.com/images/I/61i9D4-83ZL.jpg") no-repeat center center fixed;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.quiz-title {
+  margin-top: 80px;
+  margin-bottom: 50px;
+  border-radius: 25px;
+}
+
+
+/******* Clothing Dashboard Styling *******/
+
+.dash-page {
+  padding-bottom: 100px;
+}
+
+.card {
+  width: 350px;
+}
+
+.card-title {
+  height: 2.5em;
+}
+
+.clothing-color {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px black solid;
+}
+
+.clothing-img {
+  height: 400px;
+  object-fit: cover;
+}
+
+/******* Cart Styling *******/
+
+.cart-page {
+  width: 70%;
+}
+
+.cart-img {
+  height: 200px;
+  object-fit: scale-down;
+}
+
+.cart-card {
+  width: 800px
+}
+
+.processing:after {
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: bottom;
+  -webkit-animation: ellipsis steps(5, end) 900ms infinite;
+  animation: ellipsis steps(15, end) 900ms infinite;
+  content: "\2026";
+  /* ascii code for the ellipsis character */
+  width: 0px;
+}
+
+@keyframes ellipsis {
+  to {
+    width: 40px;
+  }
+}
+
+@-webkit-keyframes ellipsis {
+  to {
+    width: 40px;
+  }
 }
