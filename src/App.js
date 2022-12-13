@@ -17,11 +17,11 @@ const App = () => {
   const [arrayOfClothes, setArrayOfClothes] = useState([])
   
 
-  const getUserInfo = () => {
-    axios.get('http://localhost:3000/')
-    .then((res) => setUserInfo(res.data), (err) => console.log(err))
-    .catch((error) => console.log(error))
-  }
+  // const getUserInfo = () => {
+  //   axios.get('http://localhost:3000/')
+  //   .then((res) => setUserInfo(res.data), (err) => console.log(err))
+  //   .catch((error) => console.log(error))
+  // }
 
   // grabs all clothes objects from our db
   const getClothes = () => {
@@ -48,6 +48,15 @@ const App = () => {
     .then(response => setUserInfo(response.data))
   }
 
+  // adds selected color to object 
+  // clothes is passed in, so that we know which clothes we are adding it too.
+  // data we expect is just an object with key of selectedColor and value of color in string.
+  const handleSelectColor = (clothes, data) => {
+    axios.put('http://localhost:3000/color/' + clothes._id, data)
+    .then(response => getClothes())
+  }
+
+
   // FIXME: function to Add to Cart
   const handleAddToCart = (chosenClothes) => {
     axios.put(`http://localhost:3000/add/${userInfo._id}/${chosenClothes._id}`)
@@ -59,6 +68,7 @@ const App = () => {
       }
       handleLogin(user)
     })
+    console.log(userInfo)
   }
 
   const handleEdit = (data) => {
