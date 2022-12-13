@@ -17,11 +17,11 @@ const App = () => {
   const [arrayOfClothes, setArrayOfClothes] = useState([])
   
 
-  const getUserInfo = () => {
-    axios.get('http://localhost:3000/')
-    .then((res) => setUserInfo(res.data), (err) => console.log(err))
-    .catch((error) => console.log(error))
-  }
+  // const getUserInfo = () => {
+  //   axios.get('http://localhost:3000/')
+  //   .then((res) => setUserInfo(res.data), (err) => console.log(err))
+  //   .catch((error) => console.log(error))
+  // }
 
   // grabs all clothes objects from our db
   const getClothes = () => {
@@ -48,16 +48,27 @@ const App = () => {
     .then(response => setUserInfo(response.data))
   }
 
+  // adds selected color to object 
+  // clothes is passed in, so that we know which clothes we are adding it too.
+  // data we expect is just an object with key of selectedColor and value of color in string.
+  const handleSelectColor = (clothes, data) => {
+    axios.put('http://localhost:3000/color/' + clothes._id, data)
+    .then(response => getClothes())
+  }
+
+
   // FIXME: function to Add to Cart
-  const handleAddToCart = (clothes) => {
-    axios.post(`http://localhost:3000/add/${userInfo._id}/${clothes._id}`)
+  const handleAddToCart = (chosenClothes) => {
+    axios.put(`http://localhost:3000/add/${userInfo._id}/${chosenClothes._id}`)
     .then((response) => {
+
       const user = { 
         email: userInfo.email,
         password: userInfo.password
       }
       handleLogin(user)
     })
+
   }
 
   const handleEdit = (data) => {
@@ -73,15 +84,17 @@ const App = () => {
   }
 
   const handleDelete = (deletedItem) => {
-    axios.delete('http://localhost:3000/cart/' + deletedItem._id)
+    axios.delete(`http://localhost:3000/delete/${userInfo._id}/${deletedItem._id}`)
     .then((response) => {
       // FIXME: need to double check the backend logic first and test this out
       let newItems = userInfo.cart.filter((cartItem) => {
-        return cartItem._id !== cartItem._id
+        return cartItem._id !== deletedItem._id
       })
-
-      // this saves each item that is not the deleted user's info to the array.
-      setUserInfo(newItems)
+      const user = { 
+        email: userInfo.email,
+        password: userInfo.password
+      }
+      handleLogin(user)
 
     })
   }
@@ -170,10 +183,13 @@ const App = () => {
       <Routes>    
         <Route exact path="/" element={<Signup handleCreateUser={handleCreateUser}/>} />
         <Route path="/login" element={<Login handleLogin={handleLogin}/>}/>
+
         <Route path="/dashboard" element={<Dashboard userInfo={userInfo} item={arrayOfClothes} handleAddToCart={handleAddToCart}/>} />
+
         <Route path="/quiz" element={<Quiz handleEditUser={handleEditUser}/>}/>
         {/* TODO: check to see if it works */}
-        <Route path="/cart" element={<Cart clothes={clothes} handleDelete={handleDelete} handleEdit={handleEdit} />}/>
+
+        <Route path="/cart" element={<Cart userInfo={userInfo} handleDelete={handleDelete} handleEdit={handleEdit} />}/>
         <Route path="/purchased" element={<Purchased />} />
       </Routes>
     </>
