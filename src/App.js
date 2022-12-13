@@ -61,14 +61,14 @@ const App = () => {
   const handleAddToCart = (chosenClothes) => {
     axios.put(`http://localhost:3000/add/${userInfo._id}/${chosenClothes._id}`)
     .then((response) => {
-      console.log()
+
       const user = { 
         email: userInfo.email,
         password: userInfo.password
       }
       handleLogin(user)
     })
-    console.log(userInfo)
+
   }
 
   const handleEdit = (data) => {
@@ -90,9 +90,11 @@ const App = () => {
       let newItems = userInfo.cart.filter((cartItem) => {
         return cartItem._id !== deletedItem._id
       })
-
-      // this saves each item that is not the deleted user's info to the array.
-      setUserInfo(newItems)
+      const user = { 
+        email: userInfo.email,
+        password: userInfo.password
+      }
+      handleLogin(user)
 
     })
   }

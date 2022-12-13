@@ -42,8 +42,6 @@ const Cart = (props) => {
 
     const calculateTax = () => {
         setTotalTax(((priceTotal + 12) * 0.0625).toFixed(2))
-        console.log("subtotal" + priceTotal)
-        console.log("est tax" + totalTax)
     }
 
     useEffect (() => {
@@ -51,11 +49,9 @@ const Cart = (props) => {
         props.userInfo.cart.forEach((cartItem)=> { 
             tempPriceTotal += (Number(cartItem.price.formattedValue.split(" ")[1]))
         })
-
         setPriceTotal(tempPriceTotal)
-
         calculateTax()
-    }, [])
+    }, [props.userInfo.cart])
 
     return (
         <>
@@ -63,6 +59,7 @@ const Cart = (props) => {
             <div className="container-fluid d-flex cart-page justify-content-center">
       
                 <div className="flex-column flex-grow-1 d-inline-block">
+                    {console.log("users: " + props.userInfo)}
                     {props.userInfo.cart.map((cartItem)=> { 
                     
                      return (
@@ -85,6 +82,7 @@ const Cart = (props) => {
                                 </div>
 
                                 <button className="btn btn-danger mt-4 mx-2 w-50" onClick={()=>{props.handleDelete(cartItem)}}>Delete</button>
+                                {console.log("hello")}
                             </div>
                         </div>
                     </>
@@ -99,9 +97,9 @@ const Cart = (props) => {
                         <h3 className="my-5">Order Summary</h3>
                         <h6 className="my-3">Total Items: ${priceTotal}</h6>
                         <h6 className="my-3">Shipping & handling: $12.00</h6>
-                        <h6 className="my-3">Subtotal: ${priceTotal + 12}</h6>
+                        <h6 className="my-3">Subtotal: ${(priceTotal + 12).toFixed(2)}</h6>
                         <h6 className="my-3">Estimated Tax: ${totalTax}</h6>
-                        <h6 className="my-5">Order Total: ${priceTotal + 12 + Number(totalTax)}</h6>
+                        <h6 className="my-5">Order Total: ${(priceTotal + 12 + Number(totalTax)).toFixed(2)}</h6>
                         <input type="submit" onClick={checkOut} className="btn btn-info my-3" value="checkout"/>
                         
                         {showProcessing ? <h5 className="processing mx-5 my-4">processing</h5> : null}
