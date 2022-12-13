@@ -48,6 +48,15 @@ const App = () => {
     .then(response => setUserInfo(response.data))
   }
 
+  // adds selected color to object 
+  // clothes is passed in, so that we know which clothes we are adding it too.
+  // data we expect is just an object with key of selectedColor and value of color in string.
+  const handleSelectColor = (clothes, data) => {
+    axios.put('http://localhost:3000/color/' + clothes._id, data)
+    .then(response => getClothes())
+  }
+
+
   // FIXME: function to Add to Cart
   const handleAddToCart = (clothes) => {
     axios.post(`http://localhost:3000/add/${userInfo._id}/${clothes._id}`)
