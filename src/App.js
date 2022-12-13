@@ -94,6 +94,7 @@ const App = () => {
     axios.delete(`http://localhost:3000/delete/${userInfo._id}/${deletedItem._id}`)
     .then((response) => {
       // FIXME: need to double check the backend logic first and test this out
+      console.log("app.js line 97: " + userInfo.cart)
       let newItems = userInfo.cart.filter((cartItem) => {
         return cartItem._id !== deletedItem._id
       })
@@ -105,6 +106,8 @@ const App = () => {
 
     })
   }
+
+
 
   // function that sets arrayOfClothes to an array filled with filtered items
   const handleFiltered = () => {

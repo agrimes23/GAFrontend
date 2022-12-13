@@ -17,13 +17,13 @@ const Cart = (props) => {
         // TODO: need to empty the cart array OR maybe empty it after showing cart list on purchased page?
         event.target.hidden = false
         setShowProcessing(false)
-        setTimeout(1000)
+
         props.userInfo.cart.map((cartItem)=> { 
             props.handleDelete(cartItem)
+            console.log(props.userInfo.cart.length)
         })
+
         navigate('/purchased')
-
-
         // window.location.href="http://localhost:3001/purchased"
     }
 

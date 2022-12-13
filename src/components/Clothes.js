@@ -8,7 +8,7 @@ const Clothes = (props) => {
     // const [chosenHex, setChosenHex] = useState()
     // const [getIndex, setGetIndex] = useState(0)
     // const [index, setIndex] = useState(0)
-
+    const [buttonStatus, setButtonStatus] = useState(true)
 
 // // TODO: do this after successfully added to cart. Need to put onClick={handleClick} on div
 //     const handleClick = (e) => {
@@ -19,20 +19,16 @@ const Clothes = (props) => {
 
 
 // Just want to submit whatever item was clicked on to cart array
-    const handleSubmit = (e) => {
-      e.preventDefault()
-      props.handleAddToCart(props.item)
-    }
-
-    // const hideButton = (event) => {
-    //     setTimeout(1000)
-    //     event.target.hidden = true
-    //     // return (
-    //     //     <>
-    //     //         <h6>This item has been added to cart</h6>
-    //     //     </>
-    //     // )
+    // const handleSubmit = (e) => {
+    //   e.preventDefault()
+      
     // }
+
+    const hideButton = (event) => {
+        setTimeout(1000)
+        props.handleAddToCart(props.item)
+        setButtonStatus(false)
+    }
 
     // useEffect = () => {
 
@@ -41,7 +37,7 @@ const Clothes = (props) => {
     return (
         <>
             <div className="card clothes-card m-1">
-            <form onSubmit={handleSubmit}>
+            <form>
                 <img src={props.item.images[0].url} className="card-img-top clothing-img" />
                 <div className="card-body">
                 <h4 className="card-title" name="name"><strong>{props.item.name}</strong></h4>
@@ -55,7 +51,8 @@ const Clothes = (props) => {
                         )
                     })}
                 </div>
-                <input type="submit" className="btn btn-primary d-block" value="Add to Cart"/> 
+                {(buttonStatus) ? (<input type="submit" className="btn btn-primary d-block" onClick={hideButton} value="Add to Cart"/> ) : (<h6>Added to Cart!</h6>)}
+                
                 </div>           
             </form>
             </div>
