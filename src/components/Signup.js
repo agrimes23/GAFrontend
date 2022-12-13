@@ -1,5 +1,6 @@
 import {useState} from 'react'
 import { Link, useNavigate} from 'react-router-dom'
+import Navbar from './Navbar.js'
 
 const Signup = (props) => {
     const [user, setUser] = useState({email: '', name: '', password: ''})
@@ -19,7 +20,7 @@ const Signup = (props) => {
 
     return (
         <>
-        
+        <Navbar/>
             <div className="signup-page">
                 <div className="container-fluid signup-box form-group align-items-center d-flexcolumn shadow">
                     <div className="mt-5 mx-5">

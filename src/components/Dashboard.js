@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react'
 import Clothes from './Clothes.js'
 import axios from 'axios'
+import Navbar from './Navbar.js'
 
 const Dashboard = (props) => {
 
@@ -10,6 +11,7 @@ const Dashboard = (props) => {
 
     return (
         <>
+        <Navbar/>
             <div className="container-fluid dash-page">
                 <div className="text-center my-5">
                     <h1 className="my-5">Welcome, {props.userInfo.name}!</h1>
