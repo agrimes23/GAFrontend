@@ -49,8 +49,6 @@ const Cart = (props) => {
         setTotalTax(((priceTotal + 12) * 0.625).toFixed(2))
     }
 
-
-
     return (
         <>
         <h1 className="mx-auto text-center mt-5">Your cart</h1>
@@ -76,8 +74,8 @@ const Cart = (props) => {
                                     <button className="btn btn-dark rounded-circle my-3 mx-2 pb-2" value="+" onClick={adjustItemNum}>+</button>
                                     <button className="btn btn-dark rounded-circle my-3 mx-2 px-3 pb-2" value="-">-</button>
                                 </div>
-                                
-                                <button className="btn btn-danger mt-4 mx-2 w-50" onClick={()=>{props.handleDelete()}} >Delete</button>
+                                {console.log(cartItem)}
+                                <button className="btn btn-danger mt-4 mx-2 w-50" onClick={()=>{props.handleDelete(cartItem)}} >Delete</button>
                             </div>
                         </div>
                     </>
