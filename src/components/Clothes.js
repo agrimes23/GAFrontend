@@ -24,10 +24,21 @@ const Clothes = (props) => {
       props.handleAddToCart(props.item)
     }
 
+    const hideButton = (event) => {
+        event.target.hidden = true
+        return (
+            <>
+                <h6>This item has been added to cart</h6>
+            </>
+        )
+    }
+
+    // useEffect = () => {
+
+    // }
 
     return (
         <>
-        
             <div className="card clothes-card m-1">
             <form onSubmit={handleSubmit}>
                 <img src={props.item.images[0].url} className="card-img-top clothing-img" />
@@ -43,7 +54,7 @@ const Clothes = (props) => {
                         )
                     })}
                 </div>
-                <input type="submit" className="btn btn-primary d-block" value="Add to Cart"/> 
+                <input type="submit" className="btn btn-primary d-block" onClick={hideButton} value="Add to Cart"/> 
                 </div>           
             </form>
             </div>
