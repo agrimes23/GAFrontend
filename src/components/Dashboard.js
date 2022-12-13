@@ -1,14 +1,17 @@
 import {useState, useEffect} from 'react'
 import Clothes from './Clothes.js'
 import axios from 'axios'
+import Navbar from './Navbar.js'
 
 const Dashboard = (props) => {
 
-    const arr = props.item.map((it, i) => <Clothes item={it} key={i} userInfo={props.userInfo} handleAddToCart={props.handleAddToCart}/>)
+    const arr = props.item.map((it, i) => <Clothes item={it} key={i} userInfo={props.userInfo.cart} handleAddToCart={props.handleAddToCart}/>)
+
 
 
     return (
         <>
+        <Navbar/>
             <div className="container-fluid dash-page">
                 <div className="text-center my-5">
                     <h1 className="my-5">Welcome, {props.userInfo.name}!</h1>

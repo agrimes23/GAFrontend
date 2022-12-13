@@ -51,9 +51,12 @@ const App = () => {
   // adds selected color to object 
   // clothes is passed in, so that we know which clothes we are adding it too.
   // data we expect is just an object with key of selectedColor and value of color in string.
+  
+  // TODO: can update the quantity/counter
   const handleSelectColor = (clothes, data) => {
     axios.put('https://e-commerce-backend-ga.herokuapp.com/color/' + clothes._id, data)
     .then(response => getClothes())
+    
   }
 
 
@@ -61,13 +64,14 @@ const App = () => {
   const handleAddToCart = (clothes) => {
     axios.post(`https://e-commerce-backend-ga.herokuapp.com/add/${userInfo._id}/${clothes._id}`)
     .then((response) => {
+
       const user = { 
         email: userInfo.email,
         password: userInfo.password
       }
       handleLogin(user)
     })
-    console.log(userInfo)
+
   }
 
   const handleEdit = (data) => {
@@ -77,8 +81,12 @@ const App = () => {
       let newItems = userInfo.cart.map((cartItem) => {
         return cartItem._id !== data._id ? cartItem : data
       })
-      // I don't need to add anything else here right..?
-      // TODO: need to double check backend to see what's happening on an update
+      const user = { 
+        email: userInfo.email,
+        password: userInfo.password
+      }
+      handleLogin(user)
+
     })
   }
 
@@ -87,11 +95,13 @@ const App = () => {
     .then((response) => {
       // FIXME: need to double check the backend logic first and test this out
       let newItems = userInfo.cart.filter((cartItem) => {
-        return cartItem._id !== cartItem._id
+        return cartItem._id !== deletedItem._id
       })
-
-      // this saves each item that is not the deleted user's info to the array.
-      setUserInfo(newItems)
+      const user = { 
+        email: userInfo.email,
+        password: userInfo.password
+      }
+      handleLogin(user)
 
     })
   }
@@ -175,15 +185,16 @@ const App = () => {
 
   return (
     <>
-    {/* Don't need to put these through map right? No, the dashboard component will have a clothes component which will be put thru a map.*/}
-    <Navbar/>
       <Routes>    
         <Route exact path="/" element={<Signup handleCreateUser={handleCreateUser}/>} />
         <Route path="/login" element={<Login handleLogin={handleLogin}/>}/>
+
         <Route path="/dashboard" element={<Dashboard userInfo={userInfo} item={arrayOfClothes} handleAddToCart={handleAddToCart}/>} />
+
         <Route path="/quiz" element={<Quiz handleEditUser={handleEditUser}/>}/>
         {/* TODO: check to see if it works */}
-        <Route path="/cart" element={<Cart clothes={clothes} handleDelete={handleDelete} handleEdit={handleEdit} />}/>
+
+        <Route path="/cart" element={<Cart userInfo={userInfo} handleDelete={handleDelete} handleEdit={handleEdit} />}/>
         <Route path="/purchased" element={<Purchased />} />
       </Routes>
     </>
