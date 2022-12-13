@@ -18,10 +18,8 @@ const Cart = (props) => {
         event.target.hidden = false
         setShowProcessing(false)
 
-        props.userInfo.cart.map((cartItem)=> { 
-            props.handleDelete(cartItem)
-            console.log(props.userInfo.cart.length)
-        })
+        props.handleClear()
+
 
         navigate('/purchased')
         // window.location.href="http://localhost:3001/purchased"
@@ -54,7 +52,7 @@ const Cart = (props) => {
 
 
     const calculateTax = () => {
-        setTotalTax(((priceTotal + 12) * 0.0625).toFixed(2))
+        (priceTotal === 0) ? setTotalTax(0) : setTotalTax(((priceTotal + 12) * 0.0625).toFixed(2))
     }
 
     useEffect (() => {
