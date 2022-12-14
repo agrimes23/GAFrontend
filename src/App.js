@@ -53,12 +53,12 @@ const App = () => {
   // data we expect is just an object with key of selectedColor and value of color in string.
   
   const handleAdd = (clothes) => {
-    axios.put(`http://localhost:3000/adjustPlus/${userInfo._id}/${clothes}`)
+    axios.put(`https://e-commerce-backend-ga.herokuapp.com/adjustPlus/${userInfo._id}/${clothes}`)
     .then(response => setUserInfo(response.data))
   }
 
   const handleSub = (clothes) => {
-    axios.put(`http://localhost:3000/adjustSub/${userInfo._id}/${clothes}`)
+    axios.put(`https://e-commerce-backend-ga.herokuapp.com/adjustSub/${userInfo._id}/${clothes}`)
     .then(response => setUserInfo(response.data))
   }
 
