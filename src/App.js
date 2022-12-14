@@ -67,11 +67,11 @@ const App = () => {
     axios.put(`https://e-commerce-backend-ga.herokuapp.com/add/${userInfo._id}/${chosenClothes._id}`)
     .then((response) => {
 
-      // const user = { 
-      //   email: userInfo.email,
-      //   password: userInfo.password
-      // }
-      // handleLogin(user)
+      const user = { 
+        email: userInfo.email,
+        password: userInfo.password
+      }
+      handleLogin(user)
     })
 
   }
