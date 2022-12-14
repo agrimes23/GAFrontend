@@ -52,12 +52,15 @@ const App = () => {
   // clothes is passed in, so that we know which clothes we are adding it too.
   // data we expect is just an object with key of selectedColor and value of color in string.
   
-  const handleSelectColor = (clothes) => {
-    axios.put(`https://e-commerce-backend-ga.herokuapp.com/color/${userInfo._id}/${clothes}`)
+  const handleAdd = (clothes) => {
+    axios.put(`http://localhost:3000/adjustPlus/${userInfo._id}/${clothes}`)
     .then(response => setUserInfo(response.data))
-
   }
 
+  const handleSub = (clothes) => {
+    axios.put(`http://localhost:3000/adjustSub/${userInfo._id}/${clothes}`)
+    .then(response => setUserInfo(response.data))
+  }
 
   // // Edit route for add to cart
   const handleAddToCart = (chosenClothes) => {
@@ -208,7 +211,7 @@ const App = () => {
         <Route path="/quiz" element={<Quiz handleEditUser={handleEditUser}/>}/>
         {/* TODO: check to see if it works */}
 
-        <Route path="/cart" element={<Cart userInfo={userInfo} handleSelectColor={handleSelectColor} handleDelete={handleDelete} handleEdit={handleEdit} handleClear={handleClear}/>}/>
+        <Route path="/cart" element={<Cart userInfo={userInfo} handleSub={handleSub} handleAdd={handleAdd} handleDelete={handleDelete} handleEdit={handleEdit} handleClear={handleClear}/>}/>
         <Route path="/purchased" element={<Purchased />} />
       </Routes>
     </>
