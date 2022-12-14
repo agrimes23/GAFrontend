@@ -11,15 +11,20 @@ const Navbar = () => {
 
                 {/* TODO: Have the home button go to dashboard if user is logged in. Don't think we have a check for that yet */}
 
-
+                {window.location.pathname === "/dashboard" || window.location.pathname === "/cart" || window.location.pathname === "/purchased" ? 
+                <Link to="/dashboard">
+                    <i className="fa-solid fa-shirt mx-2 my-3"></i>
+                    <h5 className="d-inline-block logo">StyleFinder</h5>
+                </Link> : 
                 <Link to="/">
                     <i className="fa-solid fa-shirt mx-2 my-3"></i>
                     <h5 className="d-inline-block logo">StyleFinder</h5>
-                </Link>
+                </Link>}
+                    
                 
                 <ul className="nav navbar-nav navbar-right">
-                    {window.location.pathname === "/dashboard" || window.location.pathname === "/cart" ? (<li><Link to="/cart"><i className="fa-solid fa-cart-shopping mx-5"></i></Link></li>) : null}
-                    {console.log()}
+                    {window.location.pathname === "/dashboard" || window.location.pathname === "/cart" || window.location.pathname === "/purchased" ? (<li><Link to="/cart"><i className="fa-solid fa-cart-shopping mx-5"></i></Link></li>) : null}
+
                 </ul>
             </nav>
         </>

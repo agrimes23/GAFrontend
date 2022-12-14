@@ -8,6 +8,7 @@ const Cart = (props) => {
     // shows processing animation
     const [showProcessing, setShowProcessing] = useState(false)
 
+    const [itemCount, setItemCount] = useState(1)
     const [priceTotal, setPriceTotal] = useState(0)
     const [totalTax, setTotalTax] = useState(0)
     const navigate = useNavigate()
@@ -17,13 +18,11 @@ const Cart = (props) => {
         // TODO: need to empty the cart array OR maybe empty it after showing cart list on purchased page?
         event.target.hidden = false
         setShowProcessing(false)
-        setTimeout(1000)
-        props.userInfo.cart.map((cartItem)=> { 
-            props.handleDelete(cartItem)
-        })
+
+        props.handleClear()
+
+
         navigate('/purchased')
-
-
         // window.location.href="http://localhost:3001/purchased"
     }
 
@@ -34,38 +33,29 @@ const Cart = (props) => {
         setTimeout(() => {afterTimeout(event)}, (5000))
     }
 
-    const adjustItemNum = (event, cartItem) => {
-        console.log("cart: " + cartItem)
-        if (cartItem) {
-            // cartItem.counter
-            let quantity = cartItem.counter
-            
-            (event.target.value === "+") ? quantity++ : quantity--
-            let count = {
-                counter: quantity
-            }
+    const adjustItemNum = (event, itemID, iCount) => {
 
-            // handleDelete if quantity/counter is 0
-            console.log("Button event: " + event.target.value)
-            console.log("quantity: " + quantity)
-            props.handleSelectColor(cartItem, count)
-        }
+            event.target.value === "+" ? setItemCount(itemCount + 1) : setItemCount(itemCount - 1)
+            
+            props.handleSelectColor(itemID, itemCount)
+
     }
 
 
     const calculateTax = () => {
-        setTotalTax(((priceTotal + 12) * 0.0625).toFixed(2))
+        (priceTotal === 0) ? setTotalTax(0) : setTotalTax(((priceTotal + 12) * 0.0625).toFixed(2))
     }
 
     useEffect (() => {
         let tempPriceTotal = 0
         props.userInfo.cart.forEach((cartItem)=> { 
-            tempPriceTotal += (Number(cartItem.price.formattedValue.split(" ")[1]))
+            tempPriceTotal += (Number(cartItem.price.formattedValue.split(" ")[1]) * cartItem.counter)
         })
         setPriceTotal(tempPriceTotal)
         calculateTax()
 
-    }, [props.userInfo.cart])
+    }, [props.userInfo.cart, priceTotal])
+
 
     return (
         <>
@@ -84,18 +74,16 @@ const Cart = (props) => {
                                 <img src={cartItem.images[0].url} className="cart-img float-left"></img>
                             <div className="row d-flex cart-info my-auto m-4">
                                 <h4 className=""><strong>{cartItem.name}</strong></h4>
-                                <h4 className=""><strong>Name</strong></h4>
                                 <h5 className="">Price: {cartItem.price.formattedValue}</h5>
                                 
                                 <h5 className="">Color: {cartItem.articleColorNames}</h5>
                                 <div className="d-flex">
                                     <h5 className="pt-1 my-3 mr-3">Qty: {cartItem.counter}</h5>
-                                    <button className="btn btn-dark rounded-circle my-3 mx-2 pb-2" value="+" onClick={() => {adjustItemNum(cartItem)}}>+</button>
-                                    <button className="btn btn-dark rounded-circle my-3 mx-2 px-3 pb-2" value="-" onClick={() => {adjustItemNum(cartItem)}}>-</button>
+                                    <button className="btn btn-dark rounded-circle my-3 mx-2 pb-2" value="+" onClick={(e) => {adjustItemNum(e, cartItem._id, cartItem.counter)}}>+</button>
+                                    <button className="btn btn-dark rounded-circle my-3 mx-2 px-3 pb-2" value="-" disabled>-</button>
                                 </div>
 
                                 <button className="btn btn-danger mt-4 mx-2 w-50" onClick={()=>{props.handleDelete(cartItem)}}>Delete</button>
-                                {console.log("hello")}
                             </div>
                         </div>
                     </>
@@ -108,7 +96,7 @@ const Cart = (props) => {
                 <div className="flex-column flex-grow-1 d-flex total-card m-5">
                     <div className="card p-5">
                         <h3 className="my-5">Order Summary</h3>
-                        <h6 className="my-3">Total Items: ${priceTotal}</h6>
+                        <h6 className="my-3">Total Items: ${priceTotal.toFixed(2)}</h6>
                         <h6 className="my-3">Shipping & handling: $12.00</h6>
                         <h6 className="my-3">Subtotal: ${(priceTotal + 12).toFixed(2)}</h6>
                         <h6 className="my-3">Estimated Tax: ${totalTax}</h6>
