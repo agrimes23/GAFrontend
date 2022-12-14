@@ -25,26 +25,26 @@ const App = () => {
 
   // grabs all clothes objects from our db
   const getClothes = () => {
-    axios.get('http://localhost:3000/')
+    axios.get('https://e-commerce-backend-ga.herokuapp.com/')
     .then((res) => setClothes(res.data), (err) => console.log(err))
     .catch((error) => console.log(error))
   }
 
   // function for register route
   const handleCreateUser = (data) => {
-    axios.post('http://localhost:3000/', data)
+    axios.post('https://e-commerce-backend-ga.herokuapp.com/', data)
     .then((response) => setUserInfo(response.data))
   }
 
   // function for quiz route
   const handleEditUser = (data) => {
-    axios.put('http://localhost:3000/quiz/' + userInfo._id, data)
+    axios.put('https://e-commerce-backend-ga.herokuapp.com/quiz/' + userInfo._id, data)
     .then(response => setUserInfo(response.data))
   }
 
   // function for login route
   const handleLogin = (data) => {
-    axios.post('http://localhost:3000/login', data)
+    axios.post('https://e-commerce-backend-ga.herokuapp.com/login', data)
     .then(response => setUserInfo(response.data))
   }
 
@@ -52,30 +52,29 @@ const App = () => {
   // clothes is passed in, so that we know which clothes we are adding it too.
   // data we expect is just an object with key of selectedColor and value of color in string.
   
-  // TODO: can update the quantity/counter
-  const handleSelectColor = (clothes, data) => {
-    axios.put('http://localhost:3000/color/' + clothes._id, data)
-    .then(response => getClothes())
-    
+  const handleSelectColor = (clothes) => {
+    axios.put(`https://e-commerce-backend-ga.herokuapp.com/color/${userInfo._id}/${clothes}`)
+    .then(response => setUserInfo(response.data))
+
   }
 
 
   // // Edit route for add to cart
   const handleAddToCart = (chosenClothes) => {
-    axios.put(`http://localhost:3000/add/${userInfo._id}/${chosenClothes._id}`)
+    axios.put(`https://e-commerce-backend-ga.herokuapp.com/add/${userInfo._id}/${chosenClothes._id}`)
     .then((response) => {
 
-      const user = { 
-        email: userInfo.email,
-        password: userInfo.password
-      }
-      handleLogin(user)
+      // const user = { 
+      //   email: userInfo.email,
+      //   password: userInfo.password
+      // }
+      // handleLogin(user)
     })
 
   }
 
   const handleEdit = (data) => {
-    axios.put('http://localhost:3000/cart/' + data._id, data)
+    axios.put('https://e-commerce-backend-ga.herokuapp.com/cart/' + data._id, data)
     .then((response) => {
       // FIXME: userInfo.cart might be different...
       let newItems = userInfo.cart.map((cartItem) => {
@@ -91,7 +90,7 @@ const App = () => {
   }
 
   const handleDelete = (deletedItem) => {
-    axios.delete(`http://localhost:3000/delete/${userInfo._id}/${deletedItem._id}`)
+    axios.delete(`https://e-commerce-backend-ga.herokuapp.com/delete/${userInfo._id}/${deletedItem._id}`)
     .then((response) => {
       // FIXME: need to double check the backend logic first and test this out
       console.log("app.js line 97: " + userInfo.cart)
@@ -109,7 +108,7 @@ const App = () => {
 
 
   const handleClear = () => {
-    axios.put(`http://localhost:3000/clear/${userInfo._id}`)
+    axios.put(`https://e-commerce-backend-ga.herokuapp.com/clear/${userInfo._id}`)
     .then((response) => {
       const user = { 
         email: userInfo.email,
@@ -209,7 +208,7 @@ const App = () => {
         <Route path="/quiz" element={<Quiz handleEditUser={handleEditUser}/>}/>
         {/* TODO: check to see if it works */}
 
-        <Route path="/cart" element={<Cart userInfo={userInfo} handleDelete={handleDelete} handleEdit={handleEdit} handleClear={handleClear}/>}/>
+        <Route path="/cart" element={<Cart userInfo={userInfo} handleSelectColor={handleSelectColor} handleDelete={handleDelete} handleEdit={handleEdit} handleClear={handleClear}/>}/>
         <Route path="/purchased" element={<Purchased />} />
       </Routes>
     </>

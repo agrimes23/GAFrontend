@@ -51,6 +51,10 @@ const Clothes = (props) => {
                         )
                     })}
                 </div>
+                {/* I want to check if the item is in the cart already */}
+                {/* {userInfo.filter((cartItem) => {
+
+                })} */}
                 {(buttonStatus) ? (<input type="submit" className="btn btn-primary d-block" onClick={hideButton} value="Add to Cart"/> ) : (<h6>Added to Cart!</h6>)}
                 
                 </div>           
