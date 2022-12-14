@@ -33,11 +33,9 @@ const Cart = (props) => {
         setTimeout(() => {afterTimeout(event)}, (5000))
     }
 
-    const adjustItemNum = (event, itemID, iCount) => {
+    const adjustItemNum = (event, itemID) => {
 
-            event.target.value === "+" ? setItemCount(itemCount + 1) : setItemCount(itemCount - 1)
-            
-            props.handleSelectColor(itemID, itemCount)
+            event.target.value === "+" ? props.handleAdd(itemID) : props.handleSub(itemID)          
 
     }
 
@@ -79,8 +77,8 @@ const Cart = (props) => {
                                 <h5 className="">Color: {cartItem.articleColorNames}</h5>
                                 <div className="d-flex">
                                     <h5 className="pt-1 my-3 mr-3">Qty: {cartItem.counter}</h5>
-                                    <button className="btn btn-dark rounded-circle my-3 mx-2 pb-2" value="+" onClick={(e) => {adjustItemNum(e, cartItem._id, cartItem.counter)}}>+</button>
-                                    <button className="btn btn-dark rounded-circle my-3 mx-2 px-3 pb-2" value="-" disabled>-</button>
+                                    <button className="btn btn-dark rounded-circle my-3 mx-2 pb-2" value="+" onClick={(e) => {adjustItemNum(e, cartItem._id)}}>+</button>
+                                    <button className="btn btn-dark rounded-circle my-3 mx-2 px-3 pb-2" value="-" onClick={(e) => {adjustItemNum(e, cartItem._id)}}>-</button>
                                 </div>
 
                                 <button className="btn btn-danger mt-4 mx-2 w-50" onClick={()=>{props.handleDelete(cartItem)}}>Delete</button>
